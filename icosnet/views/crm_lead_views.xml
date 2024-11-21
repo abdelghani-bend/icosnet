@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="crm_lead_view_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.lead</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form" />
+        <field name="arch" type="xml">
+            <page name="extra" position="after">
+                <page name="products" string="Products">
+                    <field name="lead_line_ids" />
+                </page>
+            </page>
+            <xpath expr="//h1/field[@name='name']" position="after">
+                <h3><field name="reference" widget="text" options="{'line_breaks': False}" readonly="0"/></h3>
+            </xpath>
+
+
+            <group name="Misc" position="after"> 
+                <group name="Misc2" >
+                    <field name="stage" invisible="1"/>
+                </group>   
+            </group>
+        </field>
+    </record>
+
+
+    <record id="crm_lead_view_inherit" model="ir.ui.view">
+        <field name="name">crm.lead.view.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_sale_quotations_new']" position="attributes">
+               
+            
+                <attribute name="invisible" separator=" or " add="stage&lt;2"></attribute> 
+                    
+
+                
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="crm_stage_tree_inherit" model="ir.ui.view">
+        <field name="name">crm_stage_tree.inherit</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_tree"/>
+        <field name="arch" type="xml">
+            <field name="is_won" position="before">
+                <field name="is_offer"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="crm_stage_form_inherit" model="ir.ui.view">
+        <field name="name">crm_stage_form.inherit</field>
+        <field name="model">crm.stage</field>
+        <field name="inherit_id" ref="crm.crm_stage_form"/>
+        <field name="arch" type="xml">
+            <field name="is_won" position="before">
+                <field name="is_offer"/>
+            </field>
+        </field>
+    </record>
+</odoo>

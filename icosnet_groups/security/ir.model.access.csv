@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_partner_infra_group,access_res_partner_infra_group,base.model_res_partner,icosnet_groups.group_infra_group,1,0,0,0
+
+access_sale_order_line_infra_group,access_sale_order_line_infra_group,sale.model_sale_order_line,icosnet_groups.group_infra_group,1,1,0,0
+access_sale_order_infra_group,access_sale_order_infra_group,sale.model_sale_order,icosnet_groups.group_infra_group,1,1,0,0
+
+access_project_project_infra_group,access_project_project_infra_group,project.model_project_project,icosnet_groups.group_infra_group,0,1,1,0
+access_project_task_infra_group,access_project_task_infra_group,project.model_project_task,icosnet_groups.group_infra_group,0,1,1,0
+
+access_product_technical_attribute_infra_group,access_product_technical_attribute_infra_group,icosnet.model_product_technical_attribute,icosnet_groups.group_infra_group,0,1,0,0

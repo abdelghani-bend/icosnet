@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record id="view_attributes_wizard_tree" model="ir.ui.view">
+        <field name="name">technical.attributes.wizard.tree</field>
+        <field name="model">technical.attributes.wizard</field>
+        <field name="arch" type="xml">
+            <tree>  
+                    <field name="name" />
+                    <field name="create_date" string="Date de création"/>
+                    <field name="product_id" />
+                    <field name="order_id" />
+                    <field name="partner_id" />
+                    <field name="state" decoration-success="state == 'active'" decoration-danger="state == 'cancelled'" widget="badge" />
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_attributes_wizard_form" model="ir.ui.view">
+        <field name="name">technical.attributes.wizard.form</field>
+        <field name="model">technical.attributes.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="button_open_order" type="object" class="oe_stat_button" icon="fa-usd" invisible="context.get('active_model',False) == 'sale.order.line'" >
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Devis/Commande</span>
+                            </div>
+                        </button>
+                    </div>
+                    <field name="technical_attribute_ids"  nolabel="1" >
+                        <tree string="attibutes" editable="bottom" create="false" delete="false" decoration-info="is_technical == True">
+                            <field name="is_required" widget="boolean_toggle" readonly="1"  force_save="1"/>
+                            <field name="is_technical" widget="boolean_toggle" readonly="1"  force_save="1"/>
+                            <field name="name"  width="100px"  readonly="1"  force_save="1"/>   
+                            <field name="value" required="is_required and type=='text'" readonly="type!='text'" width="100px"/>   
+                            <field name="selection_value" required="is_required and type=='selection'" readonly="type!='selection'"  widget="custom_selection"  width="100px"/>   
+                            <field name="date_value" required="is_required and type=='date'" width="100px" readonly="type!='date'"/>   
+                            <field name="file_value" required="is_required and type=='fichier'" width="100px" readonly="type!='fichier'"/>   
+                            <field name="res_id" required="is_required and type=='table'" width="100px" readonly="type!='table'" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="possible_values" column_invisible="1" width="100px"/>
+                            <field name="type" column_invisible="1"/>   
+                            <field name="model_name" column_invisible="1"/>
+                        </tree>
+                    </field>
+                <footer>
+                    <button string="Annuler" class="oe_highlight" special="cancel"/>
+                    <button string="Enregistrer" class="oe_highlight" type="object" name="action_submit_attributes"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_attributes_wizard_filter" model="ir.ui.view">
+        <field name="name">technical.attributes.wizard.search</field>
+        <field name="model">technical.attributes.wizard</field>
+        <field name="arch" type="xml">
+            <search string="Search">
+                <field name="name"/>
+                <field name="order_id"/>
+                <field name="partner_id" />
+                <field name="product_id" />
+
+                <separator/>
+                <group string="Regrouper Par" expand="1" name="groupby">
+                    <separator/>
+                    <filter string="Devis/Commande" name="group_order" context="{'group_by': 'order_id'}"/>
+                    <filter string="Client" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Produit" name="group_partner" context="{'group_by': 'product_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+</odoo>

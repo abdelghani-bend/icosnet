@@ -1,0 +1,37 @@
+<odoo>
+    <record id="view_form_res_country_city" model="ir.ui.view">
+        <field name="name">res.country.city.form</field>
+        <field name="model">res.country.city</field>
+        <field name="arch" type="xml">
+            <form string="City">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="state_id"/>
+                        <field name="zip"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_res_country_city" model="ir.ui.view">
+        <field name="name">res.country.city.tree</field>
+        <field name="model">res.country.city</field>
+        <field name="arch" type="xml">
+            <tree string="Cities">
+                <field name="name"/>
+                <field name="state_id"/>
+                <field name="zip"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_res_country_city" model="ir.actions.act_window">
+        <field name="name">Villes</field>
+        <field name="res_model">res.country.city</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_res_country_city" name="Villes" parent="contacts.menu_localisation" action="action_res_country_city"/>
+</odoo>

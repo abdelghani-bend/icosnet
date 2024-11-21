@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="sale_report_inherit_template" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+                <xpath expr="//div[@class='some_existing_class']" position="after">
+                    <div name="signature">
+                    </div>
+                </xpath>
+                <xpath expr="//div[@class='some_existing_class']" position="after">
+                    <div name="informations_reference">
+                    </div>
+                </xpath>
+                &lt;!DOCTYPE html&gt;
+                <main>
+                <t t-foreach="docs" t-as="o">
+                    <html xmlns="http://www.w3.org/1999/xhtml">
+                        <head>
+                            <meta charset="UTF-8" />
+                            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+                            <meta name="format-detection" content="telephone=no" />
+                            <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                            }
+                            table {
+                                border-collapse: collapse;
+                            }
+                            .table_tr, .table_td {
+                                box-sizing: border-box; 
+                            }
+                            table th,
+                            table td {
+                                border: 1px solid #9cc2e5;
+                                padding-left:5px;
+                            }
+                            .inline-divs {
+                                width:100%;
+                            }
+                            .inline-divs > table{
+                                display: inline-block;
+                            }
+                            h3 {
+                                margin-top:0;
+                            }
+                            </style>
+                        </head>
+<t t-if="o.state == 'draft'">
+                        <body>
+                            <!-- Header -->
+                            <div class="header" >
+                                <img t-att-src="'/icosnet_reports/static/images/Picturef1.png'" style="width:100%;height:150px" alt="Logo is not loaded"/>
+                            </div>
+
+                            <br></br>
+
+                            <div>
+                                <div style="float:left; width:50%">
+                                    <h3>Icosnet SPA</h3>
+                                    <p>Centre des affaires EL Qods</p>
+                                    <p>6eme niveau de la tour centrale</p>
+                                    <p>16002 Cheraga</p>
+                                    <p>N° De téléphone : +213 21 993 342</p>
+                                </div>
+                                <div style="float:right; width:50%">
+                                    <h3> DESTINATAIRE :</h3>
+                                </div>
+                            </div>
+
+                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+
+                            <div>
+                                <p><strong>Date de devis:</strong> <t t-esc="o.date_order"/> </p>
+                                <p><strong>Validité de l'offre:</strong> <t t-esc="o.validity_date"/> </p>
+                            </div>
+
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+                            <table class="table" style="width:100%">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th> <strong> DESCRIPTION </strong> </th>
+                                        <th> <strong> QUANTITE </strong> </th>
+                                        <th> <strong> PRIX UNITAIRE</strong> </th>
+                                        <th> <strong> REMISE </strong> </th>
+                                        <th> <strong> Total HT </strong> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    <t t-foreach="o.order_line" t-as="line">
+                                        <tr class="table_tr">
+                                            <td class="table_td" style="text-align:left"><t t-esc="line.product_id.name"/></td>
+                                            <td class="table_td" style="text-align:right"><t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right"><t t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right"><t t-esc="line.discount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right"><t t-esc="line.price_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </tr>
+                                    </t>  
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="4" class="table_td" style="text-align:center;"><strong>MONTANT TOTAL</strong></td>
+                                        <td> <t t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="table_td" style="text-align:right;"><strong>Total HT</strong></td>
+                                        <td> <t t-esc="o.amount_untaxed" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="table_td" style="text-align:right;"><strong>Total TVA</strong></td>
+                                        <td> <t t-esc="o.amount_tax" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="table_td" style="text-align:right;"><strong>Net a payer</strong></td>
+                                        <td> <t t-esc="o.amount_total" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                    </tr>
+                                </tfoot>        
+                            </table>  
+
+                            <br></br>
+                            <br></br>
+                            <br></br>
+
+                            <!-- Conditions Section -->
+                            <div style="with:100%">
+                                <div style="float:left; width:60%">
+                                    <h3>Conditions de commande :</h3>
+                                    <span>*Fourniture d'une copie du registre de commerce et carte fiscale</span> <br/>
+                                    <span>*Signature du contrat d'abonnement de service</span> <br/>
+                                    <span>*Période d'engagement d'une année dès la signature du B</span> <br/>
+                                    <span>*Modalités de paiement :15 Jours après réception du bon de commande</span> <br/>
+                                    <span>*Délai de livraison : XX jours après réception de la facture</span> <br/>
+                                </div>
+                                <div style="float:right; width:40%">
+                                    <h3> Commercial :</h3>
+                                </div>
+                            </div>
+
+                            <br></br>
+
+                            <!-- Footer-->
+                            <div class="footer">
+                                <div style="float:left; width:40%">
+                                    Centre des affaires EL Qods <br/>
+                                    Tour central, 6éme niveau. Chéraga <br/>
+                                </div>
+                                <div style="float:left; width:30%">
+                                    Tél: 021 99 33 42 <br/>
+                                    MOB: 0770 17 51 90 <br/>
+                                </div>
+                                <div style="float:right; width:30%">
+                                    <a href="">www.icosnet.com</a> <br/>
+                                    <a href="">contact@icosnet.com</a> <br/>
+                                </div>   
+                            </div>
+
+                        </body>
+</t>  
+<t t-else="">
+                        <body>
+                            <!-- Header -->
+                            <div class="header" >
+                                <img t-att-src="'/icosnet_reports/static/images/Picturef1.png'" style="width:100%;height:150px" alt="Logo is not loaded"/>
+                            </div>
+
+                        <!-- First Section -->
+                        
+                        <div class="inline-divs">
+
+                            <table style="height:100px;width:33%">
+                                <tr class="table_tr">
+                                    <td class="table_td" colspan="2" style="background-color: #1f4e79; color:white; text-align:center">Icosnet</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NOM - RAISON SOCIALE</strong></td>
+                                    <td class="table_td">ICOSNET</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>ADRESSE</strong></td>
+                                    <td class="table_td">CENTRE DES AFFAIRES EL QODS, 6ème Niveau de la tour centrale 16002 Chéraga</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>R.C./AGREMENT</strong></td>
+                                    <td class="table_td">99B00067316/00</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIF</strong></td>
+                                    <td class="table_td">099916000667312</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIC</strong></td>
+                                    <td class="table_td">099916500999205</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>ART. IMPOSITION</strong></td>
+                                    <td class="table_td"></td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>TELEPHONE/FAX</strong></td>
+                                    <td class="table_td"></td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>E-MAIL</strong></td>
+                                    <td class="table_td"></td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>CHARGE DE COMPTE</strong></td>
+                                    <td class="table_td"></td>
+                                </tr>
+                            </table> 
+
+                            <table style="height:100px;width:33%">
+                                <tr class="table_tr">
+                                    <td class="table_td" colspan="2" style="background-color: #1f4e79;color:white; text-align:center">Client livré</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NOM - RAISON SOCIALE</strong></td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.name"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>ADRESSE</strong></td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.contact_address"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>R.C./AGREMENT</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_registre"/>  </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIF</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_carte_fiscale"/>  </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIC</strong></td>
+                                    <td class="table_td">   </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>ART. IMPOSITION</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_article"/> </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>TELEPHONE/FAX</strong></td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.phone"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>E-MAIL</strong></td>
+                                    <td class="table_td" style="word-wrap: break-word; word-break: break-all; white-space: normal">
+                                    <t t-esc="o.partner_id.email"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>CONTACT PRINCIPAL</strong></td>
+                                    <td class="table_td">  </td>
+                                </tr>
+                            </table> 
+
+                            <table style="height:100px;width:33%">
+                                <tr class="table_tr">
+                                    <td class="table_td" colspan="2" style="background-color: #1f4e79;color:white; text-align:center">Client facturé</td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NOM - RAISON SOCIALE</strong></td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.name"/>  </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"> <strong> ADRESSE </strong> </td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.contact_address"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>R.C./AGREMENT</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_registre"/>  </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIF</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_carte_fiscale"/>  </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>NIC</strong></td>
+                                    <td class="table_td">  </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>ART. IMPOSITION</strong></td>
+                                    <!-- <td class="table_td"> <t t-esc="o.partner_id.number_article"/> </td> -->
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>TELEPHONE/FAX</strong></td>
+                                    <td class="table_td"> <t t-esc="o.partner_id.phone"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>E-MAIL</strong></td>
+                                    <td class="table_td" style="word-wrap: break-word; word-break: break-all; white-space: normal"> 
+                                    <t t-esc="o.partner_id.email"/> </td>
+                                </tr>
+                                <tr class="table_tr">
+                                    <td class="table_td"><strong>CONTACT FINANCIER</strong></td>
+                                    <td class="table_td">  </td>
+                                </tr>
+                            </table> 
+
+                        </div>    
+
+                        <br></br>
+
+                        <table style="width:100%">
+                                <tr class="table_tr" style="background-color: #1f4e79;color:white; text-align:center">
+                                    
+                                </tr>
+                                
+                        </table>
+                        <table class="table" style="width:100%">
+                                <thead>
+                                    <tr style="background-color: #1f4e79;color:white; text-align:center">
+                                        <th> <strong> DESIGNATION DE L'ARTICLE OU DE SERVICE </strong> </th>
+                                        <th> <strong> QUANTITE </strong> </th>
+                                        <th> <strong> Devise </strong> </th>
+                                        <th> <strong> Prix unitaire HT </strong> </th>
+                                        <th> <strong> Récurrence </strong> </th>
+                                        <th> <strong> Remise % </strong> </th>
+                                        <th> <strong> Montant HT </strong> </th>
+                                        <th> <strong> TVA% </strong> </th>
+                                        <th> <strong> Montant TTC </strong> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>   
+                                    <t t-foreach="o.order_line" t-as="line">
+                                        <tr class="table_tr">
+                                            <td class="table_td" style="text-align:left; width:45%;"><t t-esc="line.product_id.name"/></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.product_uom_qty" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:left; width:25%;"><t t-esc="line.currency_id.name"/></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.price_unit" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <!-- <td class="table_td" style="text-align:left; width:25%;"><t t-esc="line.recurring_interval"/></td> -->
+                                            <td></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.discount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.price_subtotal" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.tax_id[0].amount" t-options='{"widget": "float", "precision": 2}'/></td>
+                                            <td class="table_td" style="text-align:right; width:25%;"><t t-esc="line.price_total" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        </tr>
+                                    </t>  
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="7" class="table_td" style="text-align:right;"><strong>Total</strong></td>
+                                        <td> <span style="padding-left:30px"  t-field="o.amount_tax"/> </td>
+                                        <td> <span style="padding-left:30px" t-field="o.amount_total"/> </td>
+                                    </tr>
+                                </tfoot>        
+                            </table>    
+                        
+                        <br></br>
+
+                        <!-- Conditions Section -->
+                        <div style="border:1px solid #9cc2e5; width:100%; padding:5px;text-align:left">
+                            <h3>Conditions de commande :</h3>
+                            <span>*Fourniture d'une copie du registre de commerce et carte fiscale</span> <br/>
+                            <span>*Signature du contrat d'abonnement de service</span> <br/>
+                            <span>*Période d'engagement d'une année dès la signature du B</span> <br/>
+                            <span>*Modalités de paiement :15 Jours après réception du bon de commande</span> <br/>
+                            <span>*Délai de livraison : XX jours après réception de la facture</span> <br/>
+                        </div>
+
+                        <br></br>
+
+                        <!-- Comments Section -->
+                        <div style="border:1px solid #9cc2e5; width:100%; height:100px; padding:5px">
+                            <h3>Commentaires :</h3>
+                        </div>
+
+                        <br></br>
+
+                        <!-- Sub Footer -->
+                        <div class="inline-divs">
+                            <table style="height:100px;width:33%">
+                                <tr>
+                                    <td style="background-color: #1f4e79;color:white; text-align:center; height:20px">
+                                    <strong> Icosnet </strong>
+                                    </td>
+                                </tr>
+                                <tr><td style="height:100px"></td></tr>
+                            </table>
+                            <table style="height:100px;width:33%">
+                                <tr>
+                                    <td style="background-color: #1f4e79;color:white; text-align:center; height:20px">
+                                    <strong> Client final </strong>
+                                    </td>
+                                </tr>
+                                <tr><td style="height:100px"></td></tr>
+                            </table>
+                            <table style="height:100px;width:33%">
+                                <tr>
+                                    <td style="background-color: #1f4e79;color:white; text-align:center; height:20px">
+                                    <strong> Partenaire </strong>
+                                    </td>
+                                </tr>
+                                <tr><td style="height:100px"></td></tr>
+                            </table>
+                        </div>
+
+                        <!-- Footer-->
+                        <div class="footer">
+                            <div style="float:left; width:40%">
+                                Centre des affaires EL Qods <br/>
+                                Tour central, 6éme niveau. Chéraga <br/>
+                            </div>
+                            <div style="float:left; width:30%">
+                                Tél: 021 99 33 42 <br/>
+                                MOB: 0770 17 51 90 <br/>
+                            </div>
+                            <div style="float:right; width:30%">
+                                <a href="">www.icosnet.com</a> <br/>
+                                <a href="">contact@icosnet.com</a> <br/>
+                            </div>   
+                        </div>
+
+                        </body>
+</t>                      
+                    </html>
+                </t>
+                </main>
+            </xpath>
+        </template>
+    </data>
+</odoo>

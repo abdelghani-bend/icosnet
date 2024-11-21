@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     
+        <record model="ir.ui.view" id="sale_orderform_inherit">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+
+            
+                <xpath expr="//tree/field[@name='company_id']" position="after">
+                    <field name="is_non_catalog" widget="boolean_toggle"/>  
+                    <field name="attributes_button_visible" column_invisible="1"/>  
+                    
+                    
+                 </xpath>
+
+
+                <xpath expr="//form/sheet/notebook/page/field[@name='order_line']/tree" position="inside">
+                    
+                    
+                    <button type="object" string="" icon="fa-file-text-o" class="btn-info ml-2 mr-2"
+                            name="open_wizard_action" invisible="not attributes_button_visible"
+                            />
+                    
+                    
+                    <button type="object" string="" icon="fa-level-up" class="btn-info" name="upgrade_order"
+                    invisible="not(recurring_invoice and parent.state=='sale' and parent.is_subscription)"
+                            />
+                </xpath>
+
+
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="payment_method"/>
+                      <field name="whmcs_orderid"/>
+                </xpath>
+           
+
+
+                <!-- <page  name="other_information" position="after">
+                 <page name="Fiche technique">
+
+                    <field name="technical_attribute_ids"  >
+                       
+                        <tree string="attibutes" editable="bottom">
+                         
+                            <field name="is_required"  widget="boolean_toggle" readonly="1"  force_save="1" />
+                            <field name="name" />   
+                            <field name="value" required="is_required and parent.state == 'sale'" />   
+                        </tree>  
+
+
+                    </field>
+
+                 </page>
+
+                 </page> -->
+                
+             
+
+                 <field name="payment_term_id" position="after">
+                    
+                        <label for="commitment_date" string="Delivery Date"/>
+                        <div name="commitment_date_div" class="o_row">
+                            <field name="commitment_date" readonly="state == 'cancel' or locked"/>
+                            <span name="expected_date_span" class="text-muted">Expected: <field name="expected_date" class="oe_inline" widget="date"/></span>
+                        </div>
+                  
+                 </field>   
+
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sale_subscription_tree_inherit">
+            <field name="name">sale.subscription.tree.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_subscription.sale_subscription_view_tree" />
+            <field name="arch" type="xml">
+                <field name="state" position="after">
+                    <field name="trial_end" optional="hide"/>   
+                </field>
+        
+            </field>  
+        </record>  
+
+        
+
+
+<record id="action_merge_orders" model="ir.actions.server">
+    <field name="name">Fusionner les devis</field>
+    <field name="model_id" ref="sale.model_sale_order"/>
+    <field name="binding_model_id" ref="sale.model_sale_order"/>
+    <field name="binding_view_types">list</field>
+    <field name="state">code</field>
+    <field name="code">model.action_merge_orders()</field>
+</record>
+
+
+
+<record id="action_fiches_techniques" model="ir.actions.act_window">
+    <field name="name">Fiches Techniques</field>
+    <field name="res_model">technical.attributes.wizard</field>
+    <field name="view_id" ref="view_attributes_wizard_tree"/>
+    <field name="view_mode">tree,form</field>
+    <field name="search_view_id" ref="view_attributes_wizard_filter"/>
+    <!-- <field name="context">{'search_default_group_order': 1}</field> -->
+</record>     
+
+
+
+
+
+
+<menuitem id="menu_sale_fiches_techniques"
+action="action_fiches_techniques"
+parent="sale.sale_order_menu"
+sequence="50"/>
+
+
+  
+    </data>
+</odoo>

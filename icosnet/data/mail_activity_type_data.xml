@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mail_act_icosnet_trial_to_renew" model="mail.activity.type">
+            <field name="name">Donner suite à la période d'éssai</field>
+            <field name="icon">fa-tasks</field>
+            <field name="res_model">sale.order</field>
+        </record>
+
+
+        <record id="mail_act_icosnet_discount_confirm" model="mail.activity.type">
+            <field name="name">Valider une remise</field>
+            <field name="icon">fa-tasks</field>
+            <field name="res_model">sale.order</field>
+        </record>
+    </data>
+</odoo>

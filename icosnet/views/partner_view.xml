@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="partner_view_documents">
+            <field name="name">partner.view.documents</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="11" />
+            <field name="arch" type="xml">
+                <page name="internal_notes" position="after">
+                 <page string="Documents" name="documents2">
+                        <field name="document_ids" mode="kanban">
+                            <kanban edit="True">
+
+                                <field name="id" />
+                                <field name="name" />
+                                <field name="partner_id" />
+                                <field name="document_type_individual" />
+                                <field name="document_type_company" />
+                                <field name="file_data"    filename="name" />
+                                <templates>
+                                    <t t-name="kanban-box">
+
+                                        <div t-attf-class="oe_kanban_global_click">
+                                            <div class="oe_kanban_details">
+                                                <field name="name" />
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <form string="documens">
+                                <sheet>
+                                    <group>
+                                        <field name="document_type_individual" string="Type de document"
+                                            required="not parent.is_company" invisible="parent.is_company"/>
+                                        <field name="document_type_company" string="Type de document"
+                                            required="parent.is_company" invisible="not parent.is_company" />
+                                    </group>
+                                    <group>
+
+                                        <field name="file_data" string="Fichier" 
+                                        filename="name" required="1" />
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                    </page>
+                
+                 
+                </page>
+                <page  name="contact_addresses" position="attributes">
+                    <attribute name="autofocus">False</attribute>
+                </page>
+                <page  name="contact_addresses" position="before">
+                    <page string="Compte" name="Compte" autofocus="autofocus">
+                    <group>
+
+                        <!-- <group string="Info Compte"  invisible="is_company">
+
+                            <field name="account_category_individual"/> 
+                            <field name="nature_account"/>
+                        </group> -->
+
+                        <group string="Info Compte"  >
+
+                            <field name="account_category"/> 
+                            <!-- <field name="activity_sector"/> -->
+                            <field name="industry_id"/>
+                            <field name="need_authorization"  widget="boolean_toggle"/>
+                            <field name="legal_status"/>
+                            <field name="nature_account"/>
+                        </group>
+                       
+                        <group string="Fiscalité"  invisible="not is_company">
+                            <field name="number_registre"/>
+                            <field name="number_article"/>
+                            <field name="number_carte_fiscale"/>
+                            <field name="number_nif"/>
+                            <field name="tva_applicable"   widget="boolean_toggle"/>
+                        </group>   
+                        
+                    </group>
+                    <group string="Piece d’identité du signataire">
+                        <field name="identity_document_type"/>
+                        <field name="number_identity_document"/>
+                        <field name="identity_document_expiration"/>
+                    </group>
+                </page>
+                </page>
+
+                <xpath expr="//field[@name='state_id']" position="after">
+                   <field name="region" default="centre" placeholder="Région"/>  
+                </xpath>
+                <xpath expr="/form/sheet/group" position="after">
+                   <group>
+                    <!-- <label for="firstname" string="Prénom du Commercial" />
+                    <div name="firstname">
+                        <field name="firstname"/>
+                    </div>
+                    <label for="lastname" string="Nom du Commercial " />
+                    <div name="lastname">
+                        <field name="lastname"/>
+                    </div> -->
+                    <label for="nom_commercial" string="Commercial" />
+                    <div name="nom_commercial">
+                        <field name="nom_commercial"/>
+                    </div>
+                    <label for="password2" string="Mot de passe WHMCS" />
+                    <div name="password2">
+                        <field name="password2" />
+                    </div>
+                    <label for="whmcs_clientid" string="Identifiant WHMCS" />
+                    <div name="whmcs_clientid">
+                        <field name="whmcs_clientid" />
+                    </div>
+                    
+                   </group> 
+                 
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                 </xpath>
+
+
+                 <field name="company_type" position="replace">
+                        <field name="company_type" widget="radio" options="{'horizontal': true}"  eval="[
+                        ('person', 'Personne Physique'),('company', 'Personne Morale')]"/>
+                </field>
+
+                <xpath expr="//field[@name='city']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                 </xpath>
+
+
+
+                <field name="city" position="after">
+                    <field name="city_id" placeholder="Ville"/>
+                </field>
+
+
+              
+
+
+                <div name="button_box" position="inside">
+                    <button name="action_see_fiches_techniques" type="object" class="oe_stat_button" icon="fa-file-text-o">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value"><field name="technical_attribute_count"/></span>
+                            <span class="o_stat_text">Fiches Techniques</span>
+                        </div>
+                    </button>
+                </div>
+
+            </field>
+        </record>
+
+
+        <record model="ir.actions.server" id="web.download_contact">
+            <field name="name">Download (vCard)</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="groups_id" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+            <field name="code">
+                action = {
+                    'type': 'ir.actions.act_url',
+                    'url': '/web/partner/vcard?partner_ids=' + ','.join(map(str, records.ids)),
+                    'target': 'download',
+                }
+            </field>
+        </record>
+        
+
+
+    </data>
+    </odoo>

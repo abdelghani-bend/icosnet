@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_attributes_common_tree" model="ir.ui.view">
+        <field name="name">technical.attributes.common.tree</field>
+        <field name="model">technical.attributes.common</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="create_date" string="Date de création"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_attributes_common_form" model="ir.ui.view">
+        <field name="name">technical.attributes.common.form</field>
+        <field name="model">technical.attributes.common</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="apply_fiche" string="Appliquer la fiche technique"
+                    type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="product_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="category_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fiche Technique">
+                            <field name="technical_attribute_ids">
+                                <tree string="Attributes" editable="bottom">
+                                    <field name="is_required" widget="boolean_toggle"/>
+                                    <field name="is_technical" widget="boolean_toggle"/>
+                                    <field name="name" widget="section_and_note_text"/>
+                                    <field name="type"/>
+                                    <field name="possible_values"/>
+                                    <field name="model_id" readonly="type != 'table'"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_fiches_techniques_common" model="ir.actions.act_window">
+        <field name="name">Fiches Techniques Communes</field>
+        <field name="res_model">technical.attributes.common</field>
+        <field name="view_id" ref="view_attributes_common_tree"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_fiches_techniques_common"
+              action="action_fiches_techniques_common"
+              parent="stock.menu_stock_inventory_control"
+              name="Fiches techniques communes"
+              sequence="20"/>
+
+
+</odoo>

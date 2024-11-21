@@ -1,0 +1,38 @@
+#. module: icosnet
+#: model:ir.model.fields.selection,name:icosnet.selection__product_template__service_tracking_quotation__no
+msgid "Nothing"
+msgstr "Rien"
+
+
+
+#. module: icosnet
+#: model:ir.model.fields.selection,name:icosnet.selection__product_template__service_tracking_quotation__task_global_project
+msgid "Task"
+msgstr "Tâche"
+
+#. module: icosnet
+#: model:ir.model.fields.selection,name:icosnet.selection__product_template__service_tracking_quotation__project_only
+msgid "Project"
+msgstr "Projet"
+
+#. module: icosnet
+#: model:ir.model.fields.selection,name:icosnet.selection__product_template__service_tracking_quotation__task_in_project
+msgid "Project & Task"
+msgstr "Projet & Tâche"
+
+
+#. module: icosnet
+#: model:ir.model.fields,help:icosnet.field_product_template__service_tracking_quotation
+msgid ""
+"On quotation creation, this product can generate a project and/or task.         From those, you can track the service you are selling.\n"
+"         'In sale order's project': Will use the sale order's configured project if defined or fallback to         creating a new project based on the selected template."
+msgstr ""
+"À la crétation du devis, ce produit peut générer un projet et/ou une tâche. Depuis ceux-ci, vous pouvez suivre le service que vous vendez.\n"
+"         'Dans un projet de bon de commande': utilisera un projet configuré sur le bon de commande si celui-ci est défini ou, à défaut, créera un nouveau projet à partir du modèle sélectionné."
+
+
+
+#. module: icosnet
+#: model:ir.model.fields,field_description:icosnet.field_product_template__service_tracking_quotation
+msgid "Create on Quotation"
+msgstr "Créer à la génération du devis"

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="icosnet.module_category_remise" model="ir.module.category">
+        <field name="name">Remises</field>
+        <field name="description">Gestion de remises</field>
+        <field name="sequence">13</field>
+    </record>   
+
+
+    <record id="group_remise_5_pourcent" model="res.groups">
+        <field name="name">remise 5%</field>
+        <field name="category_id" ref="icosnet.module_category_remise"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="group_remise_15_pourcent" model="res.groups">
+        <field name="name">remise 15%</field>
+        <field name="category_id" ref="icosnet.module_category_remise"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('group_remise_5_pourcent'))]"/>
+    </record>
+    
+    <record id="group_remise_50_pourcent" model="res.groups">
+        <field name="name">remise 50%</field>
+        <field name="category_id" ref="icosnet.module_category_remise"/>
+        <field name="implied_ids" eval="[(4, ref('group_remise_15_pourcent'))]"/>
+    </record>
+
+
+
+    <record id="icosnet.module_category_validation" model="ir.module.category">
+
+        <field name="name">Validations</field>
+        <field name="description">Gestion de validation de remises</field>
+        <field name="sequence">12</field>
+    </record>  
+    
+    <record id="group_validateur_5_pourcent" model="res.groups">
+        <field name="name">validateur 5%</field>
+        <field name="category_id" ref="icosnet.module_category_validation"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    
+    <record id="group_validateur_10_pourcent" model="res.groups">
+        <field name="name">validateur 10%</field>
+        <field name="category_id" ref="icosnet.module_category_validation"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user')), (4, ref('group_validateur_5_pourcent'))]"/>
+    </record>
+    
+    <record id="group_validateur_20_pourcent" model="res.groups">
+        <field name="name">validateur 20%</field>
+        <field name="category_id" ref="icosnet.module_category_validation"/>
+        <field name="implied_ids" eval="[(4, ref('group_validateur_10_pourcent'))]"/>
+    </record>
+
+
+    <record id="technical_rule" model="ir.rule">
+        <field name="name">Technical attribute technical</field>
+        <field name="model_id" ref="model_product_technical_attribute" />
+        <field name="global" eval="True" />
+        <field name="domain_force">
+            [('is_technical','=',True)]
+        </field>
+        <field name="groups" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
+    </record>
+    
+</odoo>

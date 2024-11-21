@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_product_line_group_user,crm.lead.product.line,model_crm_lead_product_line,base.group_user,1,1,1,1
+access_partner_documents_group_user,partner.documents,model_partner_documents,base.group_user,1,1,1,1
+access_activity_sector_group_user,activity.sector,model_activity_sector,base.group_user,1,1,1,1
+access_product_technical_attribute_group_user,product.technical.attribute,model_product_technical_attribute,base.group_user,1,1,1,1
+access_subscription_trial_group_user,subscription.trial,model_subscription_trial,base.group_user,1,1,1,1
+access_technical_attributes_wizard_group_user,technical.attributes.wizard,model_technical_attributes_wizard,base.group_user,1,1,0,0
+access_technical_attributes_common_group_user,technical.attributes.common,model_technical_attributes_common,base.group_user,1,1,1,1
+
+access_icosnet_common_config_group_user,access_icosnet_common_config_user,model_icosnet_common_config,base.group_user,1,1,1,1
+access_icosnet_pop_group_user,access_icosnet_pop_user,model_icosnet_pop,base.group_user,1,1,1,1
+access_icosnet_pop_equipement_group_user,access_icosnet_equipement_pop_user,model_icosnet_pop_equipement,base.group_user,1,1,1,1
+access_icosnet_res_country_city_group_user,access_icosnet_res_country_city_user,model_res_country_city,base.group_user,1,1,1,1

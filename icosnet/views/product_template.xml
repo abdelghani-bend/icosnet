@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_template_inherit_documents">
+            <field name="name">product.template.inherit.documents</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view" />
+            <field name="arch" type="xml">
+                <page name="general_information" position="after">
+                    <page name="documents" string="Documents">
+                    <group>
+                        <group>
+                            <field name="piece_identite" widget="boolean_toggle"/>
+                            <field name="registre_commerce" widget="boolean_toggle"/>
+                            <field name="autorisation_arpce" widget="boolean_toggle"/>
+                            <field name="inapi" widget="boolean_toggle"/>
+                            <field name="formulaire_nd_dz" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <field name="procuration_dz" widget="boolean_toggle"/>
+                            <field name="formulaire_caracteristiques" widget="boolean_toggle"/>
+                            <field name="lettre_consentement" widget="boolean_toggle"/>
+                            <field name="procuration_sms" widget="boolean_toggle"/>
+                            <field name="lettre_fixation_sender_id" widget="boolean_toggle"/>
+                        </group>   
+                          <group >
+                            <field name="lettre_exploitation_fo_fms" widget="boolean_toggle"/>
+                            <field name="capture_cnrc" widget="boolean_toggle"/>
+                            <field name="carte_fiscale" widget="boolean_toggle"/>
+                            <field name="conditions_vente" widget="boolean_toggle"/>
+
+                          </group>
+                            
+                    </group>
+                    </page>
+
+                    <page name="attributes" string="Fiche Technique">
+                        <field name="technical_attribute_ids">
+                            <tree string="attibutes" editable="bottom">
+                                <field name="is_required" widget="boolean_toggle"  />
+                                <field name="is_technical" widget="boolean_toggle"  />
+                                <field name="name" widget="section_and_note_text" />   
+                                
+                                <field name="type"/>   
+                                <field name="possible_values" />
+                                <field name="model_name" column_invisible="1"/>
+                                <field name="res_id" required="is_required and type=='table'" width="100px" readonly="type!='table'" options="{'no_create': True, 'no_open': True}"/>
+                                
+
+                            </tree>  
+
+
+                        </field>
+                      
+                    </page>
+                </page>
+
+                <field name="detailed_type" position="after"> 
+                    <field name="is_non_catalog" widget="boolean_toggle"/>
+                    <field name="pid_whmcs"/>
+                    <field name="engament_minimale"/>
+                    <field name="type_abonnement"/>
+                    <field name="reservation" widget="boolean_toggle"/>
+                    <field name="nbr_annees" invisible="not reservation"/>
+                </field> 
+ 
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="product_template_sale_project_inherit">
+            <field name="name">product.template.inherit.sale.project</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="sale_project.product_template_form_view_invoice_policy_inherit_sale_project" />
+            <field name="arch" type="xml">
+             
+
+                <xpath expr="//field[@name='service_tracking']" position="after">
+                    <field name="service_tracking_quotation" invisible="type != 'service' or not sale_ok"/>  
+                  
+                 </xpath>
+
+                 <!-- <xpath expr="//field[@name='project_id']" position="attributes">
+                    <attribute name="invisible" separator=" and " add="service_tracking_quotation != 'task_global_project'"></attribute> 
+                    <attribute name="invisible" separator=" or " add="detailed_type !='service'"></attribute> 
+                    <attribute name="required" separator=" or " add="service_tracking_quotation == 'task_global_project'"></attribute> 
+                 </xpath> -->
+
+                 <xpath expr="//field[@name='project_id']" position="after">
+                    <field name="project_id_quotation" invisible="type != 'service' or service_tracking_quotation != 'task_global_project'"/>  
+                 </xpath>
+
+                 <!-- <xpath expr="//label[@for='project_id']/parent::div" position="attributes">
+                    <attribute name="invisible" separator=" and " add="service_tracking_quotation != 'task_global_project'"></attribute> 
+                    <attribute name="invisible" separator=" or " add="detailed_type !='service'"></attribute> 
+                 </xpath> -->
+
+
+            </field>
+        </record>
+
+        <record id="sale.product_template_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form,activity</field>
+            <field name="view_id" ref="product.product_template_kanban_view"/>
+            <field name="search_view_id" ref="product.product_template_search_view"/>
+            <field name="context">{"search_default_services":1, "sale_multi_pricelist_product_template": 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new product
+                </p><p>
+                    You must define a product for everything you sell or purchase,
+                    whether it's a storable product, a consumable or a service.
+                </p>
+            </field>
+        </record>
+
+        <record id="product.product_template_action" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="product.product_template_kanban_view"/>
+            <field name="search_view_id" ref="product.product_template_search_view"/>
+            <field name="context">{"search_default_services":1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new product
+                </p><p>
+                    You must define a product for everything you sell or purchase,
+                    whether it's a storable product, a consumable or a service.
+                </p>
+            </field>
+        </record>
+
+        <record id="stock.product_template_action_product" model="ir.actions.act_window">
+            <field name="name">Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="search_view_id" ref="stock.product_template_search_form_view_stock"/>
+            <field name="context">{"search_default_services": 1, 'default_detailed_type': 'product'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No product found. Let's create one!
+                </p><p>
+                    Track your stock quantities by creating storable products.
+                </p>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="product_category_inherit">
+            <field name="name">product.category.inherit.form.view</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field name="arch" type="xml">
+               <field name="parent_id" position="after">
+                    <field name="account_code"/>
+               </field>
+
+            </field>
+        </record>
+        
+
+
+        
+       
+    </data>
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="group_infra_group" model="res.groups">
+            <field name="name">Infra Group</field>
+            <field name="comment">Group for infra users with specific permissions.</field>
+        </record>
+
+        <record id="access_client_subscription" model="ir.model.access">
+            <field name="name">access_client_subscription</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_sale_order_infra_group" model="ir.model.access">
+            <field name="name">access_sale_order_infra_group</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+        
+        <record id="access_sale_order_line_infra_group" model="ir.model.access">
+            <field name="name">access_sale_order_line_infra_group</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_technical_document" model="ir.model.access">
+            <field name="name">access_technical_document</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_project_task_infra_group" model="ir.model.access">
+            <field name="name">access_project_task_infra_group</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <record id="access_product_technical_attribute_infra_group" model="ir.model.access">
+            <field name="name">access_product_technical_attribute_infra_group</field>
+            <field name="model_id" ref="icosnet.model_product_technical_attribute"/>
+            <field name="group_id" ref="icosnet_groups.group_infra_group"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+    </data>
+</odoo>
