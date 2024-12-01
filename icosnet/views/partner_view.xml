@@ -7,8 +7,26 @@
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="priority" eval="11" />
             <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('o_row')]" position="before">
+                    <group>
+                        <field name="firstname" invisible="is_company"/>
+                        <field name="lastname" invisible="is_company"/>
+                        <field name="sex" invisible="is_company"/>
+                    </group>
+                </xpath>
+                <field name="function" position="before">
+                    <field name="entity_type" widget="radio"/>
+                </field>
+                <field name="function" position="after">
+                    <field name="contact_role" invisible="is_company"/>
+                    <field name="fax" widget="phone"/>
+                </field>
+                <field name="email" position="after">
+                    <field name="second_email" widget="email"/>
+                    <field name="second_contact"/>
+                </field>
                 <page name="internal_notes" position="after">
-                 <page string="Documents" name="documents2">
+                    <page string="Documents" name="documents2">
                         <field name="document_ids" mode="kanban">
                             <kanban edit="True">
 
@@ -33,105 +51,119 @@
                                 <sheet>
                                     <group>
                                         <field name="document_type_individual" string="Type de document"
-                                            required="not parent.is_company" invisible="parent.is_company"/>
+                                               required="not parent.is_company" invisible="parent.is_company"/>
                                         <field name="document_type_company" string="Type de document"
-                                            required="parent.is_company" invisible="not parent.is_company" />
+                                               required="parent.is_company" invisible="not parent.is_company" />
                                     </group>
                                     <group>
 
-                                        <field name="file_data" string="Fichier" 
-                                        filename="name" required="1" />
+                                        <field name="file_data" string="Fichier"
+                                               filename="name" required="1" />
                                     </group>
                                 </sheet>
                             </form>
                         </field>
                     </page>
-                
-                 
                 </page>
                 <page  name="contact_addresses" position="attributes">
                     <attribute name="autofocus">False</attribute>
                 </page>
                 <page  name="contact_addresses" position="before">
                     <page string="Compte" name="Compte" autofocus="autofocus">
-                    <group>
+                        <group>
 
-                        <!-- <group string="Info Compte"  invisible="is_company">
+                            <!-- <group string="Info Compte"  invisible="is_company">
 
-                            <field name="account_category_individual"/> 
-                            <field name="nature_account"/>
-                        </group> -->
+                                <field name="account_category_individual"/>
+                                <field name="nature_account"/>
+                            </group> -->
 
-                        <group string="Info Compte"  >
+                            <group string="Info Compte"  >
+                                <field name="code_nav"/>
+                                <field name="code_crm"/>
+                                <field name="account_category"/>
+                                <!-- <field name="activity_sector"/> -->
+                                <field name="industry_id"/>
+                                <field name="legal_status"/>
+                                <field name="nature_account"/>
+                                <field name="partnership_type"/>
+                                <field name="partner_type"/>
+                                <field name="need_authorization"  widget="boolean_toggle"/>
+                                <field name="need_email_authorization"  widget="boolean_toggle"/>
+                                <field name="need_tel_authorization"  widget="boolean_toggle"/>
+                                <field name="need_letter_authorization"  widget="boolean_toggle"/>
+                            </group>
 
-                            <field name="account_category"/> 
-                            <!-- <field name="activity_sector"/> -->
-                            <field name="industry_id"/>
-                            <field name="need_authorization"  widget="boolean_toggle"/>
-                            <field name="legal_status"/>
-                            <field name="nature_account"/>
+                            <group string="Fiscalité"  invisible="not is_company">
+                                <field name="number_registre"/>
+                                <field name="number_article"/>
+                                <field name="number_carte_fiscale"/>
+                                <field name="number_nif"/>
+                                <field name="number_nis"/>
+                                <field name="code_tva"/>
+                                <field name="tva_applicable"   widget="boolean_toggle"/>
+                            </group>
+
                         </group>
-                       
-                        <group string="Fiscalité"  invisible="not is_company">
-                            <field name="number_registre"/>
-                            <field name="number_article"/>
-                            <field name="number_carte_fiscale"/>
-                            <field name="number_nif"/>
-                            <field name="tva_applicable"   widget="boolean_toggle"/>
-                        </group>   
-                        
-                    </group>
-                    <group string="Piece d’identité du signataire">
-                        <field name="identity_document_type"/>
-                        <field name="number_identity_document"/>
-                        <field name="identity_document_expiration"/>
-                    </group>
-                </page>
+                        <group string="Piece d’identité du signataire">
+                            <field name="identity_document_type"/>
+                            <field name="number_identity_document"/>
+                            <field name="identity_document_expiration"/>
+                        </group>
+                    </page>
                 </page>
 
                 <xpath expr="//field[@name='state_id']" position="after">
-                   <field name="region" default="centre" placeholder="Région"/>  
+                    <field name="region" default="centre" placeholder="Région"/>
                 </xpath>
                 <xpath expr="/form/sheet/group" position="after">
-                   <group>
-                    <!-- <label for="firstname" string="Prénom du Commercial" />
-                    <div name="firstname">
-                        <field name="firstname"/>
-                    </div>
-                    <label for="lastname" string="Nom du Commercial " />
-                    <div name="lastname">
-                        <field name="lastname"/>
-                    </div> -->
-                    <label for="nom_commercial" string="Commercial" />
-                    <div name="nom_commercial">
-                        <field name="nom_commercial"/>
-                    </div>
-                    <label for="password2" string="Mot de passe WHMCS" />
-                    <div name="password2">
-                        <field name="password2" />
-                    </div>
-                    <label for="whmcs_clientid" string="Identifiant WHMCS" />
-                    <div name="whmcs_clientid">
-                        <field name="whmcs_clientid" />
-                    </div>
-                    
-                   </group> 
-                 
+                    <group>
+                        <!-- <label for="firstname" string="Prénom du Commercial" />
+                        <div name="firstname">
+                            <field name="firstname"/>
+                        </div>
+                        <label for="lastname" string="Nom du Commercial " />
+                        <div name="lastname">
+                            <field name="lastname"/>
+                        </div> -->
+                        <label for="currency_id" string="Devise"/>
+                        <div name="currency_id">
+                            <field name="currency_id"/>
+                        </div>
+                        <label for="id_commercial"/>
+                        <div name="id_commercial">
+                            <field name="id_commercial"/>
+                        </div>
+                        <label for="nom_commercial"/>
+                        <div name="nom_commercial">
+                            <field name="nom_commercial"/>
+                        </div>
+                        <label for="password2" string="Mot de passe WHMCS" />
+                        <div name="password2">
+                            <field name="password2" />
+                        </div>
+                        <label for="whmcs_clientid" string="Identifiant WHMCS" />
+                        <div name="whmcs_clientid">
+                            <field name="whmcs_clientid" />
+                        </div>
+
+                    </group>
+
                 </xpath>
 
                 <xpath expr="//field[@name='vat']" position="attributes">
                     <attribute name="invisible">1</attribute>
-                 </xpath>
+                </xpath>
 
 
-                 <field name="company_type" position="replace">
-                        <field name="company_type" widget="radio" options="{'horizontal': true}"  eval="[
+                <field name="company_type" position="replace">
+                    <field name="company_type" widget="radio" options="{'horizontal': true}"  eval="[
                         ('person', 'Personne Physique'),('company', 'Personne Morale')]"/>
                 </field>
 
                 <xpath expr="//field[@name='city']" position="attributes">
                     <attribute name="invisible">1</attribute>
-                 </xpath>
+                </xpath>
 
 
 
@@ -140,7 +172,7 @@
                 </field>
 
 
-              
+
 
 
                 <div name="button_box" position="inside">
@@ -165,14 +197,14 @@
             <field name="groups_id" eval="[(4, ref('sales_team.group_sale_manager'))]"/>
             <field name="code">
                 action = {
-                    'type': 'ir.actions.act_url',
-                    'url': '/web/partner/vcard?partner_ids=' + ','.join(map(str, records.ids)),
-                    'target': 'download',
+                'type': 'ir.actions.act_url',
+                'url': '/web/partner/vcard?partner_ids=' + ','.join(map(str, records.ids)),
+                'target': 'download',
                 }
             </field>
         </record>
-        
+
 
 
     </data>
-    </odoo>
+</odoo>

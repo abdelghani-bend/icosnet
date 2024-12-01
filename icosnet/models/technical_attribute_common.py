@@ -14,18 +14,12 @@ class TechnicalAttributes(models.Model):
 
     def create(self, vals):
         res = super().create(vals)
-        
-        total_products = self.env['product.template'].search([(('categ_id', 'child_of', res.category_ids.ids))]) | res.product_ids
-        
-        for product in total_products:
-            new_lines = [(0, 0, {
-                        'name': attr.name,
-                        'is_required': attr.is_required,
-                        'type': attr.type,
-                        'possible_values': attr.possible_values,
-                            }) for attr in res.technical_attribute_ids]
+        res.apply_fiche()
+        return res
 
-            product.write({'technical_attribute_ids': new_lines})
+    def write(self, vals):
+        res = super().write(vals)
+        self.sudo().apply_fiche()
         return res
 
     def apply_fiche(self):
@@ -33,17 +27,16 @@ class TechnicalAttributes(models.Model):
             total_products = self.env['product.template'].search(
                 [(('categ_id', 'child_of', rec.category_ids.ids))]) | rec.product_ids
             for product in total_products:
-                new_lines = [(0, 0, {
+                new_lines = [(6, 0, [])] + [(0, 0, {
                     'name': attr.name,
                     'is_required': attr.is_required,
                     'type': attr.type,
                     'possible_values': attr.possible_values,
                     'model_id': attr.model_id.id,
+                    'product_id': product.id,
                 }) for attr in rec.technical_attribute_ids]
-                if product.technical_attribute_ids:
-                    product.technical_attribute_ids.unlink()
+
                 product.write({'technical_attribute_ids': new_lines})
-                print(product.technical_attribute_ids)
 
 class CrmLeadProductLine(models.Model):
     _name = "product.technical.attribute"

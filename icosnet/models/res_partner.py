@@ -23,10 +23,10 @@ class ResPartner(models.Model):
 
 
     region = fields.Selection(string="Région", selection=[('Centre', 'Centre'),
-                                         ('Est', 'Est'),
-                                         ('Ouest', 'Ouest'),
-                                         ('Sud', 'Sud'),
-                                         ])
+                                                         ('Est', 'Est'),
+                                                         ('Ouest', 'Ouest'),
+                                                         ('Sud', 'Sud'),
+                                                         ])
     account_category = fields.Selection(string="Catégorie de compte", selection=[('Grand compte', 'Grand compte'),
                                          ('PME', 'PME'),
                                          ('SOHO', 'SOHO'),
@@ -52,6 +52,7 @@ class ResPartner(models.Model):
     number_article = fields.Char(string="N° Article d\'imposition")
     number_carte_fiscale = fields.Char(string="N° Carte fiscale")
     number_nif = fields.Char(string="N° identification fiscale")
+    number_nis = fields.Char(string="N° identification social")
     tva_applicable = fields.Boolean(string="Assujetti à la TVA?", default=True)
     identity_document_type = fields.Selection(string="Type piece d\'identité", selection=[('Carte d\'identité nationale', 'Carte d\'identité nationale'),
                                          ('Passeport', 'Passeport')])
@@ -65,16 +66,32 @@ class ResPartner(models.Model):
 
     technical_attribute_count = fields.Integer(compute='_compute_technical_attribute_count')
 
-    firstname = fields.Char(string="Prénom du Commercial" )
-    lastname = fields.Char(string="Nom du Commercial")
-    nom_commercial = fields.Char(string="Nom du Commercial")
+    firstname = fields.Char(string="Nom" )
+    lastname = fields.Char(string="Prénom")
+    nom_commercial = fields.Char(string="Nom Commercial")
+    id_commercial = fields.Char(string="ID Commercial")
     whmcs_clientid = fields.Char(string="Identifiant WHMCS")
     password2 = fields.Char(string="Mot de passe whmcs")
+    code_crm = fields.Char(string="Code CRM")
+    code_nav = fields.Char(string="Code navision")
+    code_tva = fields.Char(string="Code TVA")
 
     city_id = fields.Many2one('res.country.city', string='City')
+    entity_type = fields.Selection([('client', 'Client'),
+                                   ('partner', 'Partenaire'),
+                                   ('contact', 'Contact')], required=True, string="Type d'entité")
+    fax = fields.Char(string="Fax")
+    second_email = fields.Char(string="Email secondaire")
+    second_contact = fields.Char(string="Contact secondaire")
+    contact_role = fields.Selection([('role', 'Role')], required=False, string="Role")
+    need_email_authorization = fields.Boolean(string="Autorisé Email ?")
+    need_tel_authorization = fields.Boolean(string="Autorisé Tel ?")
+    need_letter_authorization = fields.Boolean(string="Autorisé Courrier ?")
+    partnership_type = fields.Selection([('partnership', 'Partenariat')], required=False, string="Type de partenariat")
+    partner_type = fields.Selection([('partner', 'Partenaire')], required=False, string="Type de partenaire")
+    sex = fields.Selection([('man', 'Homme'),
+                            ('woman', 'Femme')], required=False, string="Sexe")
 
-    
-    
     def _get_missing_fields(self, field_names):
         data = self.read(field_names.keys())
         if len(data)>0 and not all(value for value in data[0].values()):
