@@ -27,7 +27,7 @@ class ResPartner(models.Model):
                                                          ('Ouest', 'Ouest'),
                                                          ('Sud', 'Sud'),
                                                          ])
-    account_category = fields.Selection(string="Catégorie de compte", selection=[('Grand compte', 'Grand compte'),
+    account_category = fields.Selection(string="Catégorie de compte", selection=[('Grand Compte', 'Grand Compte'),
                                          ('PME', 'PME'),
                                          ('SOHO', 'SOHO'),
                                          ('Partenaire', 'Partenaire'),
@@ -75,22 +75,37 @@ class ResPartner(models.Model):
     code_crm = fields.Char(string="Code CRM")
     code_nav = fields.Char(string="Code navision")
     code_tva = fields.Char(string="Code TVA")
+    compte_parent_name = fields.Char(string="Nom du compte parent")
 
     city_id = fields.Many2one('res.country.city', string='City')
-    entity_type = fields.Selection([('client', 'Client'),
-                                   ('partner', 'Partenaire'),
-                                   ('contact', 'Contact')], required=True, string="Type d'entité")
+    entity_type = fields.Selection([('Client', 'Client'),
+                                   ('Partenaire', 'Partenaire'),
+                                   ('Contact', 'Contact')], required=True, string="Type d'entité")
     fax = fields.Char(string="Fax")
     second_email = fields.Char(string="Email secondaire")
     second_contact = fields.Char(string="Contact secondaire")
-    contact_role = fields.Selection([('role', 'Role')], required=False, string="Role")
+    contact_role = fields.Selection([('Directeur Général', 'Directeur Général'),
+                                     ('Contact Technique', 'Contact Technique'),
+                                     ('Contact Commercial', 'Contact Commercial'),
+                                     ('Contact Financier', 'Contact Financier'),
+                                     ('Contact Achat/MG', 'Contact Achat/MG'),
+                                     ], required=False, string="Role")
     need_email_authorization = fields.Boolean(string="Autorisé Email ?")
     need_tel_authorization = fields.Boolean(string="Autorisé Tel ?")
     need_letter_authorization = fields.Boolean(string="Autorisé Courrier ?")
-    partnership_type = fields.Selection([('partnership', 'Partenariat')], required=False, string="Type de partenariat")
-    partner_type = fields.Selection([('partner', 'Partenaire')], required=False, string="Type de partenaire")
-    sex = fields.Selection([('man', 'Homme'),
-                            ('woman', 'Femme')], required=False, string="Sexe")
+    partnership_type = fields.Selection([('Commercial', 'Commercial'),
+                                         ('Commercial & Technique', 'Commercial & Technique'),
+                                         ('Technique', 'Technique'),
+                                         ], required=False, string="Type de partenariat")
+    partner_type = fields.Selection([('Vente', 'Vente'),
+                                     ('Installateur et vente', 'Installateur et vente'),
+                                     ('Hébergeur', 'Hébergeur'),
+                                     ('Installateur', 'Installateur'),
+                                     ], required=False, string="Type de partenaire")
+    sex = fields.Selection([('Homme', 'Homme'),
+                            ('Femme', 'Femme')], required=False, string="Sexe")
+
+    currency = fields.Many2one('res.currency', string="Currency")
 
     def _get_missing_fields(self, field_names):
         data = self.read(field_names.keys())
@@ -252,7 +267,7 @@ class ResPartner(models.Model):
             'country': partner.country_id.code,
             'phonenumber': partner.phone,
             'password2': partner.password2,
-            'currency': partner.currency_id.name,
+            'currency': partner.currency.name,
             'customfields': encoded_fields,
             'noemail': True,
             'skipvalidation' : 'true',

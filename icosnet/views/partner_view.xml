@@ -7,10 +7,14 @@
             <field name="inherit_id" ref="base.view_partner_form" />
             <field name="priority" eval="11" />
             <field name="arch" type="xml">
+                <field name="category_id" position="attributes">
+                    <attribute name="string">Classification</attribute>
+                </field>
                 <xpath expr="//div[hasclass('o_row')]" position="before">
                     <group>
                         <field name="firstname" invisible="is_company"/>
                         <field name="lastname" invisible="is_company"/>
+                        <field name="compte_parent_name"/>
                         <field name="sex" invisible="is_company"/>
                     </group>
                 </xpath>
