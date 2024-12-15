@@ -73,6 +73,7 @@ class ResPartner(models.Model):
     whmcs_clientid = fields.Char(string="Identifiant WHMCS")
     password2 = fields.Char(string="Mot de passe whmcs")
     code_crm = fields.Char(string="Code CRM")
+    crm_id = fields.Char(string="ID CRM")
     code_nav = fields.Char(string="Code navision")
     code_tva = fields.Char(string="Code TVA")
     compte_parent_name = fields.Char(string="Nom du compte parent")

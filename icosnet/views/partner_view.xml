@@ -9,25 +9,38 @@
             <field name="arch" type="xml">
                 <field name="category_id" position="attributes">
                     <attribute name="string">Classification</attribute>
+                    <attribute name="invisible">entity_type != 'Client'</attribute>
+                </field>
+                <field name="parent_id" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="zip" position="attributes">
+                    <attribute name="invisible">entity_type not in ['Client', 'Contact']</attribute>
                 </field>
                 <xpath expr="//div[hasclass('o_row')]" position="before">
                     <group>
-                        <field name="firstname" invisible="is_company"/>
-                        <field name="lastname" invisible="is_company"/>
-                        <field name="compte_parent_name"/>
-                        <field name="sex" invisible="is_company"/>
+                        <field name="firstname" invisible="entity_type != 'Contact'"/>
+                        <field name="lastname" invisible="entity_type != 'Contact'"/>
+                        <field name="parent_id" invisible="entity_type not in ['Client', 'Partenaire']" string="Nom du parent" readonly="1"/>
+                        <field name="compte_parent_name" invisible="1"/>
+                        <field name="sex" invisible="entity_type != 'Contact'"/>
                     </group>
                 </xpath>
+                <field name="function" position="attributes">
+                    <attribute name="invisible">0</attribute>
+                </field>
                 <field name="function" position="before">
+                    <field name="create_date" string="Crée le" readonly="1"/>
+                    <field name="user_id" string="Crée par" readonly="1"/>
                     <field name="entity_type" widget="radio"/>
                 </field>
                 <field name="function" position="after">
-                    <field name="contact_role" invisible="is_company"/>
+                    <field name="contact_role" invisible="entity_type not in ['Client', 'Contact']"/>
                     <field name="fax" widget="phone"/>
                 </field>
                 <field name="email" position="after">
-                    <field name="second_email" widget="email"/>
-                    <field name="second_contact"/>
+                    <field name="second_email" widget="email" invisible="entity_type != 'Contact'"/>
+                    <field name="second_contact" invisible="entity_type != 'Contact'"/>
                 </field>
                 <page name="internal_notes" position="after">
                     <page string="Documents" name="documents2">
@@ -83,42 +96,46 @@
                             </group> -->
 
                             <group string="Info Compte"  >
-                                <field name="code_nav"/>
+                                <field name="code_nav" invisible="entity_type not in ['Client', 'Contact']"/>
+                                <field name="crm_id"/>
                                 <field name="code_crm"/>
-                                <field name="account_category"/>
+                                <field name="account_category" invisible="entity_type != 'Client'"/>
                                 <!-- <field name="activity_sector"/> -->
-                                <field name="industry_id"/>
-                                <field name="legal_status"/>
-                                <field name="nature_account"/>
-                                <field name="partnership_type"/>
-                                <field name="partner_type"/>
+                                <field name="industry_id" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                                <field name="legal_status" invisible="entity_type != 'Client'"/>
+                                <field name="nature_account" invisible="entity_type != 'Client'"/>
+                                <field name="partnership_type" invisible="entity_type != 'Partenaire'"/>
+                                <field name="partner_type" invisible="entity_type != 'Partenaire'"/>
                                 <field name="need_authorization"  widget="boolean_toggle"/>
-                                <field name="need_email_authorization"  widget="boolean_toggle"/>
-                                <field name="need_tel_authorization"  widget="boolean_toggle"/>
-                                <field name="need_letter_authorization"  widget="boolean_toggle"/>
+                                <field name="need_email_authorization" invisible="entity_type != 'Client'" widget="boolean_toggle"/>
+                                <field name="need_tel_authorization" invisible="entity_type != 'Client'" widget="boolean_toggle"/>
+                                <field name="need_letter_authorization" invisible="entity_type != 'Client'" widget="boolean_toggle"/>
                             </group>
 
                             <group string="Fiscalité"  invisible="not is_company">
-                                <field name="number_registre"/>
-                                <field name="number_article"/>
-                                <field name="number_carte_fiscale"/>
-                                <field name="number_nif"/>
-                                <field name="number_nis"/>
-                                <field name="code_tva"/>
+                                <field name="number_registre" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                                <field name="number_article" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                                <field name="number_carte_fiscale" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                                <field name="number_nif" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                                <field name="number_nis" invisible="entity_type != 'Client'"/>
+                                <field name="code_tva" invisible="entity_type != 'Client'"/>
                                 <field name="tva_applicable"   widget="boolean_toggle"/>
                             </group>
 
                         </group>
-                        <group string="Piece d’identité du signataire">
+                        <group string="Piece d’identité du signataire" invisible="entity_type != 'Contact'">
                             <field name="identity_document_type"/>
                             <field name="number_identity_document"/>
                             <field name="identity_document_expiration"/>
                         </group>
                     </page>
                 </page>
+                <field name="property_payment_term_id" position="attributes">
+                    <attribute name="invisible">entity_type != 'Client'</attribute>
+                </field>
 
                 <xpath expr="//field[@name='state_id']" position="after">
-                    <field name="region" default="centre" placeholder="Région"/>
+                    <field name="region" invisible="entity_type != 'Client'" placeholder="Région"/>
                 </xpath>
                 <xpath expr="/form/sheet/group" position="after">
                     <group>
@@ -130,16 +147,16 @@
                         <div name="lastname">
                             <field name="lastname"/>
                         </div> -->
-                        <label for="currency_id" string="Devise"/>
-                        <div name="currency_id">
+                        <label for="currency_id" string="Devise" invisible="entity_type != 'Client'"/>
+                        <div name="currency_id" invisible="entity_type != 'Client'">
                             <field name="currency_id"/>
                         </div>
-                        <label for="id_commercial"/>
-                        <div name="id_commercial">
+                        <label for="id_commercial" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                        <div name="id_commercial" invisible="entity_type not in ['Client', 'Partenaire']">
                             <field name="id_commercial"/>
                         </div>
-                        <label for="nom_commercial"/>
-                        <div name="nom_commercial">
+                        <label for="nom_commercial" invisible="entity_type not in ['Client', 'Partenaire']"/>
+                        <div name="nom_commercial" invisible="entity_type not in ['Client', 'Partenaire']">
                             <field name="nom_commercial"/>
                         </div>
                         <label for="password2" string="Mot de passe WHMCS" />
@@ -188,6 +205,20 @@
                     </button>
                 </div>
 
+            </field>
+        </record>
+
+
+        <record id="inherit_custom_view_res_partner_filter" model="ir.ui.view">
+            <field name="name">res.partner.select</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <filter name="inactive" position="after">
+                    <filter string="Client" name="client" domain="[('entity_type', '=', 'Client')]"/>
+                    <filter string="Partenaire" name="partenaire" domain="[('entity_type', '=', 'Partenaire')]"/>
+                    <filter string="Contact" name="contact" domain="[('entity_type', '=', 'Contact')]"/>
+                </filter>
             </field>
         </record>
 
