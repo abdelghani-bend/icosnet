@@ -108,6 +108,20 @@ class ResPartner(models.Model):
 
     currency = fields.Many2one('res.currency', string="Currency")
 
+    @api.model
+    def fields_get(self, allfields=None, attributes=None):
+        fields = super(ResPartner, self).fields_get(allfields, attributes)
+        if 'account_category' in fields:
+            fields['account_category']['selection'] = [('Grand Compte', 'Grand Compte'),
+                                         ('PME', 'PME'),
+                                         ('SOHO', 'SOHO'),
+                                         ('Partenaire', 'Partenaire'),
+                                         ('Partenaire National', 'Partenaire National'),('Particulier', 'Particulier'),
+                                         ('Revendeur', 'Revendeur')
+                                         ]
+        return fields
+
+
     def _get_missing_fields(self, field_names):
         data = self.read(field_names.keys())
         if len(data)>0 and not all(value for value in data[0].values()):
@@ -460,4 +474,3 @@ class PartnerDocuments(models.Model):
         if 'file_data' in vals:
             document_values['datas'] = vals['file_data']
         self.related_documents_document.write
-      
