@@ -189,7 +189,7 @@
 
 
                 <field name="city" position="after">
-                    <field name="city_id" placeholder="Ville"/>
+                    <field name="city_id" domain="[('state_id', '=', state_id)]" placeholder="Ville"/>
                 </field>
 
 

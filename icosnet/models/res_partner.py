@@ -108,6 +108,18 @@ class ResPartner(models.Model):
 
     currency = fields.Many2one('res.currency', string="Currency")
 
+    @api.onchange('city_id')
+    def _onchange_city(self):
+        if self.city_id and self.city_id.zip != self.zip:
+            self.zip = self.city_id.zip
+        else:
+            self.zip = False
+
+    @api.onchange('state_id')
+    def _onchange_state_id(self):
+        if self.state_id and self.city_id.state_id != self.state_id:
+            self.city_id = False
+
     @api.model
     def fields_get(self, allfields=None, attributes=None):
         fields = super(ResPartner, self).fields_get(allfields, attributes)

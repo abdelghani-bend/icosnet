@@ -401,8 +401,12 @@ class SaleOrderLine(models.Model):
     attributes_wizard_id = fields.Many2one('technical.attributes.wizard')
     
     attributes_button_visible = fields.Boolean(compute="_compute_attributes_button_visible",store="True")
-    
-  
+
+    @api.constrains('product_uom_qty')
+    def _constraint_product_uom_qty(self):
+        if self.product_uom_qty <= 0:
+            raise UserError("La quantité du produit %s doit être supèrieur à zero !" % self.product_template_id.name)
+
     def _timesheet_create_project_quotation(self):
         """ Generate project for the given so line, and link it.
             :param project: record of project.project in which the task should be created
