@@ -33,11 +33,11 @@ class TechnicalAttributes(models.Model):
         for rec in self:
             sol = rec.sol_id
             root_category = _get_root_category(sol.product_id)
-            account_code = root_category.account_code
+            account_name = root_category.name
             # name = sol.order_id.partner_id.name.replace(' ','-') if sol else 'Fiche expiré'
             seq =   self.env['ir.sequence'].next_by_code('seq.fiche.technique')
  
-            rec.name =  account_code+"-"+seq if account_code else seq
+            rec.name =  account_name+"-"+seq if account_name else seq
 
     def action_submit_attributes(self):
         self.env.cr.commit()
