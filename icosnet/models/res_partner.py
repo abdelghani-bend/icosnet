@@ -216,7 +216,7 @@ class ResPartner(models.Model):
                 res._add_client_whmcs()
         return res
 
-    @api.model_create_multi
+    @api.model
     def create_from_whmcs(self, vals):
         ctx = self.env.context.copy()
         ctx.update({'from_whmcs': True})
