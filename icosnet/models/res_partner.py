@@ -211,10 +211,8 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        # TODO: We have to fin another solution for existing clients
-        # if not res._check_client_exists_whmcs():
-        #    res._add_client_whmcs()
-        res._add_client_whmcs()
+        if not res._check_client_exists_whmcs():
+            res._add_client_whmcs()
         return res
 
 
@@ -245,9 +243,11 @@ class ResPartner(models.Model):
       
         client_data = response.json()
         if client_data['result'] == 'success':
-            return True
-        else:
+            if client_data['client'].get('client_id', False):
+                return True
             return False
+        elif client_data['result'] == 'error':
+            raise UserError(client_data['message'])
 
 
     def _add_client_whmcs(self):
