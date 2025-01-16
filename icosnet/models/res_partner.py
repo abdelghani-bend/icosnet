@@ -211,9 +211,16 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        # if not res._check_client_exists_whmcs():
-        #    res._add_client_whmcs()
+        if not self.env.context.get('from_whmcs', False):
+            if not res._check_client_exists_whmcs():
+                res._add_client_whmcs()
         return res
+
+
+    def create_from_whmcs(self, vals):
+        ctx = self.env.context.copy()
+        ctx.update({'from_whmcs': True})
+        return super().with_context(ctx).create(vals)
 
 
     def action_see_fiches_techniques(self):
@@ -386,16 +393,12 @@ class ResPartner(models.Model):
     def write(self, vals):
         
         needs_whmcs_update = [record for record in self if record._check_client_exists_whmcs()]
-        needs_whmcs_create = self - needs_whmcs_update
-       
+
         res = super().write(vals)
 
         for record in needs_whmcs_update:
             record._update_client_whmcs()
 
-        for record in needs_whmcs_create:
-            record._add_client_whmcs()
-        
         return res
     
 class PartnerDocuments(models.Model):
