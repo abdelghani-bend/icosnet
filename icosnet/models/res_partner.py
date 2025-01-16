@@ -211,7 +211,7 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        if res.env.context.get('params').get('menu_id', False):
+        if res.env.context.get('params', False):
             if not res._check_client_exists_whmcs():
                 res._add_client_whmcs()
         return res
