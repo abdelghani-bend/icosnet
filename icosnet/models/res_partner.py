@@ -211,8 +211,8 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        if not res._check_client_exists_whmcs():
-            res._add_client_whmcs()
+        # if not res._check_client_exists_whmcs():
+        #    res._add_client_whmcs()
         return res
 
 
@@ -243,7 +243,9 @@ class ResPartner(models.Model):
       
         client_data = response.json()
         if client_data['result'] == 'success':
-            return True
+            if client_data['client'].get('client_id', False):
+                return True
+            return False
         elif client_data['result'] == 'error':
             raise UserError(client_data['message'])
 
@@ -384,12 +386,15 @@ class ResPartner(models.Model):
     def write(self, vals):
         
         needs_whmcs_update = [record for record in self if record._check_client_exists_whmcs()]
-        
+        needs_whmcs_create = self - needs_whmcs_update
        
         res = super().write(vals)
 
         for record in needs_whmcs_update:
             record._update_client_whmcs()
+
+        for record in needs_whmcs_create:
+            record._add_client_whmcs()
         
         return res
     
