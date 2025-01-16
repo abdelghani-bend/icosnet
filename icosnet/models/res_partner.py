@@ -211,8 +211,9 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-#        if not res._check_client_exists_whmcs():
-#            res._add_client_whmcs()
+        if res.env.context.get('params').get('menu_id', False):
+            if not res._check_client_exists_whmcs():
+                res._add_client_whmcs()
         return res
 
 
@@ -246,8 +247,8 @@ class ResPartner(models.Model):
             if client_data['client'].get('client_id', False):
                 return True
             return False
-        elif client_data['result'] == 'error':
-            raise UserError(client_data['message'])
+        else:
+            return False
 
 
     def _add_client_whmcs(self):
