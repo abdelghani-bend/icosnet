@@ -211,16 +211,9 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        if not self.env.context.get('from_whmcs', False):
-            if not res._check_client_exists_whmcs():
-                res._add_client_whmcs()
+#        if not res._check_client_exists_whmcs():
+#            res._add_client_whmcs()
         return res
-
-    @api.model
-    def create_from_whmcs(self, vals):
-        ctx = self.env.context.copy()
-        ctx.update({'from_whmcs': True})
-        return super().with_context(ctx).create(vals)
 
 
     def action_see_fiches_techniques(self):
