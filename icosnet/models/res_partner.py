@@ -243,9 +243,7 @@ class ResPartner(models.Model):
       
         client_data = response.json()
         if client_data['result'] == 'success':
-            if client_data['client'].get('client_id', False):
-                return True
-            return False
+            return True
         elif client_data['result'] == 'error':
             raise UserError(client_data['message'])
 
