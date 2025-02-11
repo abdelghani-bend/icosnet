@@ -165,7 +165,7 @@ class SaleOrder(models.Model):
             'un client existant': "Non",
             'ICRM':  partner.id,
             # 'Commercial': partner.lastname + ' ' + partner.firstname,
-            'crm_integration': "true",
+            'crm_integration': 1,
         }
         serialized_fields = dumps(custom_fields)
 

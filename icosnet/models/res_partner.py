@@ -266,7 +266,7 @@ class ResPartner(models.Model):
             'ICRM':  partner.id,
             
             # 'Commercial': 'Aucun Commerciale',
-            'crm_integration': "true",
+            'crm_integration': 1,
         }
         serialized_fields = dumps(custom_fields)
 
@@ -338,7 +338,7 @@ class ResPartner(models.Model):
             'un client existant': "Oui",
             'ICRM':  partner.id,
             'wilaya' : partner.state_id.name,
-            'crm_integration': "true",
+            'crm_integration': 1,
         }
         serialized_fields = dumps(custom_fields)
 
