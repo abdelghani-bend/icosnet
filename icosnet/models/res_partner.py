@@ -117,7 +117,7 @@ class ResPartner(models.Model):
 
     @api.onchange('state_id')
     def _onchange_state_id(self):
-        if self.state_id and self.city_id.state_id != self.state_id:
+        if self.state_id and self.city_id.state_id != self.state_id or not self.state_id:
             self.city_id = False
 
     @api.model

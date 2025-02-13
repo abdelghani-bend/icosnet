@@ -14,9 +14,6 @@
                 <field name="parent_id" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </field>
-                <field name="zip" position="attributes">
-                    <attribute name="invisible">entity_type not in ['Client', 'Contact']</attribute>
-                </field>
                 <xpath expr="//div[hasclass('o_row')]" position="before">
                     <group>
                         <field name="firstname" invisible="entity_type != 'Contact'"/>
@@ -134,6 +131,13 @@
                     <attribute name="invisible">entity_type != 'Client'</attribute>
                 </field>
 
+                <xpath expr="//field[@name='street2']" position="after">
+                    <div class="d-flex justify-content-between">
+                        <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'
+                               readonly="type == 'contact' and parent_id"/>
+                    </div>
+                </xpath>
+
                 <xpath expr="//field[@name='state_id']" position="after">
                     <field name="region" invisible="entity_type != 'Client'" placeholder="Région"/>
                 </xpath>
@@ -186,10 +190,20 @@
                     <attribute name="invisible">1</attribute>
                 </xpath>
 
+                <xpath expr="//div[@name='partner_address_country']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
 
+                <field name="zip" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
 
                 <field name="city" position="after">
                     <field name="city_id" domain="[('state_id', '=', state_id)]" placeholder="Ville"/>
+                    <field name="zip"
+                           placeholder="ZIP" class="o_address_zip"
+                           invisible="entity_type not in ['Client', 'Contact']"
+                           readonly="type == 'contact' and parent_id"/>
                 </field>
 
 
