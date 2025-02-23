@@ -23,6 +23,44 @@
                             body {
                                 font-family: Arial, sans-serif;
                             }
+                            .header{
+                                position: relative;
+                                width: 100%;
+                                height: 400px;
+                                background-image: url('/icosnet_reports/static/images/Picturef1.png');
+                                background-size: cover;
+                                display: flex;
+                                justify-content: center;
+                            }
+                            .header_table{
+                                position: absolute;
+                                top: 280px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                display: flex;
+                                gap: 0px;
+                            }
+                            .header_table span{
+                                border: 1px solid rgb(7, 76, 214);
+                                padding: 10px;
+                                width: 200px;
+                                text-align: center;
+                                font-weight: bold;
+                            }
+                            .title{
+                                position: absolute;
+                                top: 165px;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                color: white;
+                            }
+                            .footer{
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-around;
+                                align-items: center;
+                                gap: 20px;
+                            }
                             table {
                                 border-collapse: collapse;
                             }
@@ -49,7 +87,13 @@
                         <body>
                             <!-- Header -->
                             <div class="header" >
-                                <img t-att-src="'/icosnet_reports/static/images/Picturef1.png'" style="width:100%;height:150px" alt="Logo is not loaded"/>
+                                <h1 class="title">BON DE COMMANDE</h1>
+                                <div class="header_table">
+                                    <span>NUMERO</span>
+                                    <span></span>
+                                    <span>DATE</span>
+                                    <span></span>
+                                </div>
                             </div>
 
                             <br></br>
@@ -124,36 +168,38 @@
                             <br></br>
 
                             <!-- Conditions Section -->
-                            <div style="with:100%">
-                                <div style="float:left; width:60%">
-                                    <h3>Conditions de commande :</h3>
+                            
+                            <div style="width:100%;border:1px solid rgb(7, 76, 214);padding:5px;text-align:left;">
+                                <h5 style="font-weight:bold;">Conditions de commande :</h5>
+                                <div style="padding-bottom:25px;padding-top:30px">
                                     <span>*Fourniture d'une copie du registre de commerce et carte fiscale</span> <br/>
                                     <span>*Signature du contrat d'abonnement de service</span> <br/>
                                     <span>*Période d'engagement d'une année dès la signature du B</span> <br/>
                                     <span>*Modalités de paiement :15 Jours après réception du bon de commande</span> <br/>
                                     <span>*Délai de livraison : XX jours après réception de la facture</span> <br/>
                                 </div>
-                                <div style="float:right; width:40%">
-                                    <h3> Commercial :</h3>
-                                </div>
                             </div>
+                            <div style="width:100%;height:200px;margin-top:20px;border:1px solid rgb(7, 76, 214); padding:5px;text-align:left;">
+                                <h5 style="font-weight:bold;"> Commentaires :</h5>
+                            </div>
+                            
 
                             <br></br>
 
                             <!-- Footer-->
                             <div class="footer">
-                                <div style="float:left; width:40%">
+                                <div>
                                     Centre des affaires EL Qods <br/>
                                     Tour central, 6éme niveau. Chéraga <br/>
                                 </div>
-                                <div style="float:left; width:30%">
-                                    Tél: 021 99 33 42 <br/>
-                                    MOB: 0770 17 51 90 <br/>
-                                </div>
-                                <div style="float:right; width:30%">
+                                <div >
                                     <a href="">www.icosnet.com</a> <br/>
                                     <a href="">contact@icosnet.com</a> <br/>
-                                </div>   
+                                </div>  
+                                <div>
+                                    Tél: 021 99 33 42 <br/>
+                                    MOB: 0770 17 51 90 <br/>
+                                </div> 
                             </div>
 
                         </body>

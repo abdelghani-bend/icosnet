@@ -11,6 +11,11 @@
         'security/groups.xml',
         'security/ir.model.access.csv'   
     ],
+    'assets': {
+        'web.assets_frontend': [
+            'icosnet_reports/static/css/custom_style.css',
+        ],  
+    },
     'application': True,
     'license': 'LGPL-3',
 }
