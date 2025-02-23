@@ -417,7 +417,8 @@ class PartnerDocuments(models.Model):
                                        ('Procuration SMS', 'Procuration SMS'),
                                        ('Lettre de fixation Sender ID', 'Lettre de fixation Sender ID'),
                                        ('Lettre d’Exploitation FO/FMS', 'Lettre d’Exploitation FO/FMS'),
-                                       ('Capture CNRC', 'Capture CNRC')])
+                                       ('Capture CNRC', 'Capture CNRC'),
+                                       ('"NDA" (non Disclosure agreement)', '"NDA" (non Disclosure agreement)'),])
     document_type_company = fields.Selection([
                                         ('Piece Identite', 'Piece Identite'),
                                        ('Registre de Commerce', 'Registre de Commerce'),
@@ -433,6 +434,7 @@ class PartnerDocuments(models.Model):
                                        ('Capture CNRC', 'Capture CNRC'),
                                        ('Carte fiscale', 'Carte fiscale'),
                                        ('Conditions générales de vente + conditions particulières de vente', 'Conditions générales de vente + conditions particulières de vente'),
+                                       ('"NDA" (non Disclosure agreement)', '"NDA" (non Disclosure agreement)'),
                                        ])
     
     file_data = fields.Binary(string="Fichier")
