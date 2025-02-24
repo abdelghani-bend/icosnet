@@ -10,57 +10,32 @@
                             <meta charset="UTF-8" />
                             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
                             <meta name="format-detection" content="telephone=no" />
-                            <style>
-                            body {
-                                font-family: Arial, sans-serif;
-                            }
-                            table {
-                                border-collapse: collapse;
-                            }
-                            .table_tr, .table_td {
-                                box-sizing: border-box; 
-                            }
-                            table th,
-                            table td {
-                                border: 1px solid #9cc2e5;
-                                padding-left:5px;
-                            }
-                            .inline-divs {
-                                width:100%;
-                            }
-                            .inline-divs > table{
-                                display: inline-block;
-                            }
-                            h3 {
-                                margin-top:0;
-                            }
-                            </style>
+                            <t t-call-assets="web.report_assets_common"/>
                         </head>
-<t t-if="o.state == 'draft'">
+                <t t-if="o.state == 'draft'">
                         <body>
                             <!-- Header -->
                             <div class="header" >
-                                <img t-att-src="'/icosnet_reports/static/images/Picturef1.png'" style="width:100%;height:150px" alt="Logo is not loaded"/>
+                                <h1 class="order_number"><span>PROFORMA/QUOTATION N° </span> <t t-esc="o.name"/></h1>
+                                <div class="header_infos">
+                                    <div>
+                                        <h3>Icosnet SPA</h3>
+                                        <p>Centre des affaires EL Qods</p>
+                                        <p>6eme niveau de la tour centrale</p>
+                                        <p>16002 Cheraga</p>
+                                        <p>Phone number : +213 21 993 342</p>
+                                    </div>
+                                    <div>
+                                        <h3> PARTNER :</h3>
+                                    </div>
+                                </div>
                             </div>
 
                             <br></br>
 
-                            <div>
-                                <div style="float:left; width:50%">
-                                    <h3>Icosnet SPA</h3>
-                                    <p>Centre des affaires EL Qods</p>
-                                    <p>6eme niveau de la tour centrale</p>
-                                    <p>16002 Cheraga</p>
-                                    <p>N° De téléphone : +213 21 993 342</p>
-                                </div>
-                                <div style="float:right; width:50%">
-                                    <h3> PARTNER :</h3>
-                                </div>
-                            </div>
+                            <br></br><br></br><br></br><br></br><br></br>
 
-                            <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-
-                            <div>
+                            <div class="header_adr">
                                 <p><strong>Date :</strong> <t t-esc="o.date_order"/> </p>
                                 <p><strong>End Customer :</strong> </p>
                                 <p><strong>Address :</strong> </p>
@@ -141,41 +116,48 @@
                             <br></br>
                             <br></br>
                             <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            
 
                             <!-- Conditions Section -->
-                            <div style="with:100%">
-                                <div style="float:left; width:60%">
+                            <div class="conditions">
+                                <div>
                                     <h3>Order Conditions :</h3>
-                                    <span>Providing a signed order. No PO No Service.</span> <br/>
-                                    <span>Commitment period of one year from service Delivery.</span> <br/>
-                                    <span>Identification details upon receipt of the purchase order.</span> <br/>
+                                    <ul>
+                                        <li>Providing a signed order. No PO No Service.</li>
+                                        <li>Commitment period of one year from service Delivery.</li>
+                                        <li>Identification details upon receipt of the purchase order.</li>
+                                    </ul>
                                 </div>
-                                <div style="float:right; width:40%">
+                                <div>
                                     <h3> Account Manager :</h3>
                                 </div>
                             </div>
 
                             <br></br>
+                            <br></br><br></br><br></br><br></br>
 
                             <!-- Footer-->
                             <div class="footer">
-                                <div style="float:left; width:40%">
+                                <div>
                                     Centre des affaires EL Qods <br/>
                                     Tour central, 6éme niveau. Chéraga <br/>
                                 </div>
-                                <div style="float:left; width:30%">
-                                    Tél: 021 99 33 42 <br/>
-                                    MOB: 0770 17 51 90 <br/>
-                                </div>
-                                <div style="float:right; width:30%">
+                                <div>
                                     <a href="">www.icosnet.com</a> <br/>
                                     <a href="">contact@icosnet.com</a> <br/>
-                                </div>   
+                                </div>  
+                                <div>
+                                    Tél: 021 99 33 42 <br/>
+                                    MOB: 0770 17 51 90 <br/>
+                                </div> 
                             </div>
 
                         </body>
-</t>  
-<t t-else="">
+                </t>  
+                <t t-else="">
                         <body>
                             <!-- Header -->
                             <div class="header" >
@@ -427,7 +409,7 @@
                         </div>
 
                         </body>
-</t>                      
+                </t>                      
                     </html>
                 </t>
                 </main>

@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, sans-serif;
+}
+table {
+    border-collapse: collapse;
+}
+.table_tr, .table_td {
+    box-sizing: border-box;
+}
+table th,
+table td {
+    border: 1px solid #9cc2e5;
+    padding-left:5px;
+}
+.inline-divs {
+    width:100%;
+}
+.inline-divs > table{
+    display: inline-block;
+}
+h3 {
+    margin-top:0;
+}
+.header{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-image: url('/icosnet_reports/static/images/Picturef1.png');
+    background-size: cover;
+    display: flex;
+}
+.order_number{
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
+.header_infos{
+    width: 100%;
+    display: flex;
+    gap: 300px;
+    padding-left: 120px;
+    padding-top: 300px;
+}
+.header_adr{
+    padding-left: 120px;
+}
+.conditions{
+    width: 100%;
+    display: flex;
+    gap: 150px;
+    padding-left: 120px;
+}
+.footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}

@@ -12,6 +12,11 @@
         'reports/purchase_order.xml',
         'reports/english_quote_report.xml',
     ],
+    'assets': {
+        'web.report_assets_common': [
+            'icosnet_reports/static/css/custom_style.css',
+        ],
+    },
     'application': True,
     'license': 'LGPL-3',
 }
