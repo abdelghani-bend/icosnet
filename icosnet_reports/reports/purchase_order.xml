@@ -22,44 +22,30 @@
                             <style>
                             body {
                                 font-family: Arial, sans-serif;
+                                padding: 0;
+                                margin: 0;
                             }
-                            .header{
-                                position: relative;
-                                width: 100%;
-                                height: 400px;
-                                background-image: url('/icosnet_reports/static/images/Picturef1.png');
-                                background-size: cover;
-                                display: flex;
-                                justify-content: center;
-                            }
-                            .header_table{
-                                position: absolute;
-                                top: 280px;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                display: flex;
-                                gap: 0px;
-                            }
-                            .header_table span{
-                                border: 1px solid rgb(7, 76, 214);
-                                padding: 10px;
-                                width: 200px;
+                            .header_table_span{
+                                border: 1px solid #9cc2e5;
+                                width: 100px; 
+                                font-weight: bold; 
                                 text-align: center;
-                                font-weight: bold;
                             }
-                            .title{
-                                position: absolute;
-                                top: 165px;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                color: white;
+                            .commande_conditions{
+                                width:100%;
+                                border: 1px solid #9cc2e5;
+                                padding-left:5px;
+                                text-align:left;
+                                box-sizing: border-box;
                             }
-                            .footer{
-                                width: 100%;
-                                display: flex;
-                                justify-content: space-around;
-                                align-items: center;
-                                gap: 20px;
+                            .commande_comments{
+                                width:100%;
+                                height:200px;
+                                margin-top:20px;
+                                border: 1px solid #9cc2e5; 
+                                padding-left:5px;
+                                text-align:left;
+                                box-sizing: border-box;
                             }
                             table {
                                 border-collapse: collapse;
@@ -86,13 +72,20 @@
 <t t-if="o.state == 'draft'">
                         <body>
                             <!-- Header -->
-                            <div class="header" >
-                                <h1 class="title">BON DE COMMANDE</h1>
-                                <div class="header_table">
-                                    <span>NUMERO</span>
-                                    <span></span>
-                                    <span>DATE</span>
-                                    <span></span>
+                            <div class="header_fr" style="position: relative; width: 100%; height:400px;top: 0; left: 0;" >
+                                <h1 style="position: absolute; top: 165px; left: 25%;color:white;">BON DE COMMANDE</h1>
+                                <!-- <img src="/icosnet_reports/static/images/Picturef1.png" alt="Logo" style="width:100%;height:100%;"/> -->
+                                <div style="position: absolute; top: 280px; left: 25%;width:400px;display: flex; align-items: center; gap: 0px;box-sizing:border-box;">
+                                    <table>
+                                        <thead>
+                                            <tr style="text-align:center">
+                                                <th style="padding-top:5px; padding-bottom: 5px; width: 100px;"> <strong> NUMERO </strong> </th>
+                                                <th style="padding-top:5px; padding-bottom: 5px; width: 100px;"></th>
+                                                <th style="padding-top:5px; padding-bottom: 5px; width: 100px;"> <strong> DATE </strong> </th>
+                                                <th style="padding-top:5px; padding-bottom: 5px; width: 100px;"></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
 
@@ -169,7 +162,7 @@
 
                             <!-- Conditions Section -->
                             
-                            <div style="width:100%;border:1px solid rgb(7, 76, 214);padding:5px;text-align:left;">
+                            <div class="commande_conditions">
                                 <h5 style="font-weight:bold;">Conditions de commande :</h5>
                                 <div style="padding-bottom:25px;padding-top:30px">
                                     <span>*Fourniture d'une copie du registre de commerce et carte fiscale</span> <br/>
@@ -179,7 +172,7 @@
                                     <span>*Délai de livraison : XX jours après réception de la facture</span> <br/>
                                 </div>
                             </div>
-                            <div style="width:100%;height:200px;margin-top:20px;border:1px solid rgb(7, 76, 214); padding:5px;text-align:left;">
+                            <div class="commande_comments">
                                 <h5 style="font-weight:bold;"> Commentaires :</h5>
                             </div>
                             
