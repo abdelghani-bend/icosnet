@@ -34,11 +34,23 @@
                     <img   t-att-src="'/icosnet/static/src/img/icosnet.png'" alt="Image"/>
 
                 </div>
+                <br></br><br></br><br></br><br></br>
+                <br></br><br></br>
+                <div class="row" style="color: white;">
+                    <div class="col-4"></div>
+                    <div class="col-7">
+                        <h1>
+                            <strong>
+                                <span t-if="state == 'draft'">DEVIS / </span>
+                                <span>BON DE COMMANDE N° <t t-esc="o.name"/></span>
+                            </strong>
+                        </h1>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
                 <br></br><br></br><br></br><br></br><br></br>
                 <br></br><br></br><br></br><br></br><br></br>
-                <br></br><br></br><br></br><br></br><br></br>
-                <br></br><br></br><br></br><br></br><br></br>
-                <div class="row text-center mb-2">
+                <div class="row text-center mb-2" style="font-size:20px">
                     <div class="col-6" style="margin: 0 auto;">
                         <table class="w-100">
                             <tr>
@@ -51,31 +63,34 @@
                     </div>
                 </div>
                 <br></br><br></br><br></br><br></br><br></br>
-                <br></br><br></br><br></br><br></br><br></br>
-                <div class="row">
-                    <div class="col-6" name="company_details">
+                <div class="row" style="width:90%;margin: auto">
+                    <div class="col-4" name="company_details">
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2" style="background: #666699; padding: 10px; color:white">A L’INTENTION DE</th>
+                                    <th colspan="2" style="background: #666699; padding: 10px; color:white">Icosnet</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NOM – RAISON SOCIALE:</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.name" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;">ICOSNET</td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;">CENTRE DES AFFAIRES EL QODS, 6ème Niveau de la tour centrale 16002 Chéraga </td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;">99B00067316/00</td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIF :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nif" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;">099916000667312</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">NIC :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">099916500999205</td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
@@ -93,12 +108,11 @@
                         </table>
                     </div>
 
-
-                    <div class="col-6" name="client_details">
+                    <div class="col-4" name="client_details">
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">COORDONNES DE LIVRAISON</th>
+                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">Client livré</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,6 +131,53 @@
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIF :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nif" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">NIC :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nis" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_article" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.phone" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.email" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-4" name="client_details">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">Client facturé</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">NOM – RAISON SOCIALE:</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.name" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">NIF :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nif" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">NIC :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nis" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
@@ -139,152 +200,127 @@
 
 
                 <div class="mt-5">
-                    <!-- <div class="row mb-5">
-                        <div class="col-6" style="border: 1px solid black; padding: 5px;">
-                            <h3>
-
-                                <t t-if="o.state == 'sale'">
-                                    <span>Bon de Commande N° :</span>
-                                    <span t-if="o.name != '/'" t-field="o.name" />  
-                                </t>
-                                <t t-else="" >
-                                    <span>Devis N° :</span>
-                                    <span t-if="o.name != '/'" t-field="o.name" />
-                                </t>
-                                
-                            </h3>
-                        </div>
-
-                      
-                    </div> -->
                     <div class="page">
 
 
                         <t t-set="lines_to_report" t-value="o._get_order_lines_to_report()"/>
                         <t t-set="display_discount" t-value="any(l.discount for l in lines_to_report)"/>
-
-                        <table class="table table-sm o_main_table table-borderless mt-4">
-                            <!-- In case we want to repeat the header, remove "display: table-row-group" -->
-                            <thead style="background: #666699; color:white; width:100%!important;">
-                                <tr>
-                                    <th name="th_description" class="text-start">
-                                        <span>DESIGNATION DE L’ARTICLE/ SERVICE</span>
-                                    </th>
-                                    <th name="th_quantity" class="text-end">
-                                        <span>QUANTITE</span>
-                                    </th>
-                                    <th name="th_priceunit"
-                                        t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                        <span>PRIX UNITAIRE HT</span>
-                                    </th>
-                                    <th name="th_price_unit" t-if="display_discount"
-                                        t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                        <span>Remise%</span>
-                                    </th>
-                                    <th name="th_subtotal" class="text-end">
-                                        <span>MONTANT HT</span>
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="sale_tbody">
-
-                                <t t-set="current_subtotal" t-value="0"/>
-
-                                <t t-foreach="lines_to_report" t-as="line">
-
-                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" />
-
-                                    <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
-                                        <t t-if="not line.display_type">
-                                            <td name="td_name"><span t-field="line.name"/></td>
-                                            <td name="td_quantity" class="text-end">
-                                                <span t-field="line.product_uom_qty"/>
-                                                <span t-field="line.product_uom"/>
-                                            </td>
-                                            <td name="td_priceunit" class="text-end">
-                                                <span t-field="line.price_unit"/>
-                                            </td>
-                                            <td t-if="display_discount" class="text-end">
-                                                <span t-field="line.discount"/>
-                                            </td>
-
-                                            <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
-                                                <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                                                <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-                                            </td>
-                                        </t>
-
+                        <center>
+                            <table class="table table-sm o_main_table table-borderless mt-4" style="width: 90%">
+                                <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                                <thead style="background: #666699; color:white; width:100%!important;">
+                                    <tr>
+                                        <th name="th_description" class="text-start">
+                                            <span>DESIGNATION DE L’ARTICLE/ SERVICE</span>
+                                        </th>
+                                        <th name="th_quantity" class="text-end">
+                                            <span>QUANTITE</span>
+                                        </th>
+                                        <th name="th_priceunit"
+                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                            <span>PRIX UNITAIRE HT</span>
+                                        </th>
+                                        <th name="th_price_unit" t-if="display_discount"
+                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
+                                            <span>Remise%</span>
+                                        </th>
+                                        <th name="th_subtotal" class="text-end">
+                                            <span>MONTANT HT</span>
+                                        </th>
                                     </tr>
+                                </thead>
+                                <tbody class="sale_tbody">
 
-                                    <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
-                                        <tr class="is-subtotal text-end">
-                                            <td name="td_section_subtotal" colspan="99">
-                                                <strong class="mr16">Subtotal</strong>
-                                                <span t-out="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                                            </td>
+                                    <t t-set="current_subtotal" t-value="0"/>
+
+                                    <t t-foreach="lines_to_report" t-as="line">
+
+                                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" />
+
+                                        <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                            <t t-if="not line.display_type">
+                                                <td name="td_name"><span t-field="line.name"/></td>
+                                                <td name="td_quantity" class="text-end">
+                                                    <span t-field="line.product_uom_qty"/>
+                                                    <span t-field="line.product_uom"/>
+                                                </td>
+                                                <td name="td_priceunit" class="text-end">
+                                                    <span t-field="line.price_unit"/>
+                                                </td>
+                                                <td t-if="display_discount" class="text-end">
+                                                    <span t-field="line.discount"/>
+                                                </td>
+
+                                                <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
+                                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+                                                </td>
+                                            </t>
+
                                         </tr>
+
+                                        <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
+                                            <tr class="is-subtotal text-end">
+                                                <td name="td_section_subtotal" colspan="99">
+                                                    <strong class="mr16">Subtotal</strong>
+                                                    <span t-out="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                                </td>
+                                            </tr>
+                                        </t>
                                     </t>
-                                </t>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
-                        <div class="clearfix mb-4">
-                            <div id="total" class="row">
-                                <div
-                                        t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
-                                    <table class="table table-sm" style="page-break-inside: avoid;">
+                            <div class="clearfix mb-4" style="width: 90%;">
+                                <div id="total" class="row">
+                                    <div
+                                            t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                                        <table class="table table-sm" style="page-break-inside: avoid;">
 
-                                        <!--Tax totals-->
-                                        <t t-set="tax_totals" t-value="o.tax_totals" />
-                                        <t t-call="account.document_tax_totals" />
-
-
-                                    </table>
+                                            <!--Tax totals-->
+                                            <t t-set="tax_totals" t-value="o.tax_totals" />
+                                            <t t-call="account.document_tax_totals" />
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <!-- Conditions Section -->
+                                <div style="width:90%;border: 1px solid #9cc2e5;padding-left:5px;text-align: start;s">
+                                    <div style="width:100%;">
+                                        <h3><strong>Conditions de commande :</strong></h3>
+                                        <ul style="font-size: 18px">
+                                            <li>Fourniture d'une copie du registre de commerce, de la carte fiscale et de la pièce d’identité</li>
+                                            <li>Signature du contrat d'abonnement au service</li>
+                                            <li>Période d'engagement minimale d’un an à compter de la signature du bon de commande</li>
+                                            <li>Modalités de paiement : 15 jours après réception du bon de commande</li>
+                                            <li>Délai de livraison : XX jours après réception de la facture </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-                        </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <!-- Conditions Section -->
+                                <div style="width:90%;border: 1px solid #9cc2e5;padding-left:5px;text-align: start;s">
+                                    <div style="width:100%;">
+                                        <h3><strong>Commentaires :</strong></h3>
+                                        <p style="font-size: 18px">
+                                            <span t-out="o.internal_note_display"/>
+                                        </p>
+                                    </div>
+                                </div>
 
-
-
-
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-6">
-                        <div style="width: 20%; background: red">
-                            <table>
-                                <tr>
-                                    <td style="background: #666699; padding: 10px; color:white">L'EDN</td>
-
-                                </tr>
-                                <tr >
-                                    <td ></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div style="width: 20%">
-                            <table>
-                                <tr>
-                                    <td style="background: #666699; padding: 10px; color:white">LE FOURNISSEUR</td>
-
-                                </tr>
-                                <tr >
-                                    <td ></td>
-                                </tr>
-                            </table>
-                        </div>
+                            </div>
+                        </center>
                     </div>
 
                 </div>
+
 
                 <div class="footer">
-
-                    <div class="row">
+                    <div class="row" style="width:90%; margin: auto">
                         <div class="col-4">
                             Centre des affaires EL Qods
                         </div>
@@ -295,7 +331,7 @@
                             <span style="float:right">Tél : +213 21 993 342</span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="width:90%; margin: auto">
                         <div class="col-4 float-left">
                             Tour central, 6éme niveau. Chéraga
                         </div>

@@ -42,13 +42,15 @@ h3 {
     position: absolute; 
     width: 100%;
     padding-left: 120px;
-    top: 250px;
+    top: 280px;
+    font-size: 22px;
 }
 .header_adr{
     position: absolute; 
     width: 100%;
     padding-left: 120px;
-    top: 550px;
+    top: 500px;
+    font-size: 22px;
 }
 .conditions{
     width: 100%;
