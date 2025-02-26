@@ -8,13 +8,14 @@
     'version': '0.1',
     'depends': ['base','sale'],
     'data': [
-        'reports/report.xml',
         'reports/purchase_order.xml',
         'reports/english_quote_report.xml',
+        'reports/report.xml',
     ],
     'assets': {
         'web.report_assets_common': [
             'icosnet_reports/static/css/custom_style.css',
+
         ],
     },
     'application': True,

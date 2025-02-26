@@ -27,13 +27,17 @@
                         <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)"
                             style="max-height: 120px;" alt="Logo" />
                     </div> -->
-                    
+
 
                 </div>
-                <!-- <div class="backgroundimage" style="z-index:-1;position:absolute;top:0;left:0;bottom:0;right:0;width:100%;height:100%;">
+                <div class="backgroundimage" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:50%">
                     <img   t-att-src="'/icosnet/static/src/img/icosnet.png'" alt="Image"/>
-                   
-                </div> -->
+
+                </div>
+                <br></br><br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br><br></br>
                 <div class="row text-center mb-2">
                     <div class="col-6" style="margin: 0 auto;">
                         <table class="w-100">
@@ -46,7 +50,8 @@
                         </table>
                     </div>
                 </div>
-                
+                <br></br><br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br><br></br>
                 <div class="row">
                     <div class="col-6" name="company_details">
                         <table>
@@ -87,8 +92,8 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    
+
+
                     <div class="col-6" name="client_details">
                         <table>
                             <thead>
@@ -128,8 +133,8 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                    
+
+
                 </div>
 
 
@@ -157,7 +162,7 @@
 
                         <t t-set="lines_to_report" t-value="o._get_order_lines_to_report()"/>
                         <t t-set="display_discount" t-value="any(l.discount for l in lines_to_report)"/>
-            
+
                         <table class="table table-sm o_main_table table-borderless mt-4">
                             <!-- In case we want to repeat the header, remove "display: table-row-group" -->
                             <thead style="background: #666699; color:white; width:100%!important;">
@@ -182,13 +187,13 @@
                                 </tr>
                             </thead>
                             <tbody class="sale_tbody">
-            
+
                                 <t t-set="current_subtotal" t-value="0"/>
-            
+
                                 <t t-foreach="lines_to_report" t-as="line">
-            
+
                                     <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" />
-            
+
                                     <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
                                         <t t-if="not line.display_type">
                                             <td name="td_name"><span t-field="line.name"/></td>
@@ -202,15 +207,15 @@
                                             <td t-if="display_discount" class="text-end">
                                                 <span t-field="line.discount"/>
                                             </td>
-                                      
+
                                             <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
                                                 <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
                                                 <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
                                             </td>
                                         </t>
-                                       
+
                                     </tr>
-            
+
                                     <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
                                         <tr class="is-subtotal text-end">
                                             <td name="td_section_subtotal" colspan="99">
@@ -226,7 +231,7 @@
                         <div class="clearfix mb-4">
                             <div id="total" class="row">
                                 <div
-                                    t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                                        t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
                                     <table class="table table-sm" style="page-break-inside: avoid;">
 
                                         <!--Tax totals-->
@@ -240,14 +245,14 @@
 
                         </div>
 
-                 
-                       
+
+
 
                     </div>
                 </div>
-                 
-                
-                <div class="row"> 
+
+
+                <div class="row">
                     <div class="col-6">
                         <div style="width: 20%; background: red">
                             <table>
@@ -277,29 +282,29 @@
 
                 </div>
 
-                <div t-attf-class="footer">
+                <div class="footer">
 
                     <div class="row">
                         <div class="col-4">
-                            Centre des affaires EL Qods 
+                            Centre des affaires EL Qods
                         </div>
                         <div class="col-4 text-center">
-                           <a href="www.icosnet.com">www.icosnet.com</a> 
+                            <a href="www.icosnet.com">www.icosnet.com</a>
                         </div>
                         <div class="col-4" >
-                           <span style="float:right">Tél : +213 21 993 342</span> 
+                            <span style="float:right">Tél : +213 21 993 342</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-4 float-left">
-                            Tour central, 6éme niveau. Chéraga 
+                            Tour central, 6éme niveau. Chéraga
                         </div>
                         <div class="col-4 text-center">
                             <a href="mailto:contact@icosnet.com">contact@icosnet.com</a>
-                            
+
                         </div>
                         <div class="col-4 float-right">
-                            <span style="float:right">FAX : +213 770 175 190</span>   
+                            <span style="float:right">FAX : +213 770 175 190</span>
                         </div>
                     </div>
                 </div>
@@ -308,8 +313,21 @@
             </t>
         </template>
 
+        <record id="paperformat_icosnet_1" model="report.paperformat">
+            <field name="name">Icosnet Paper Format</field>
+            <field name="default" eval="False"/>
+            <field name="disable_shrinking" eval="False"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="dpi">90</field>
+        </record>
 
-       
         <record id="nv_report_sale" model="ir.actions.report">
             <field name="name">Bon de commande</field>
             <field name="model">sale.order</field>
@@ -318,6 +336,7 @@
             <field name="report_file">sale.report_saleorder</field>
             <field name="print_report_name">'Bon de Commande-%s' % object.name</field>
             <field name="binding_model_id" ref="model_sale_order" />
+            <field name="paperformat_id" ref="icosnet.paperformat_icosnet_1"/>
             <field name="binding_type">report</field>
         </record>
 
