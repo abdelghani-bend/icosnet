@@ -313,7 +313,7 @@
             </t>
         </template>
 
-        <record id="paperformat_icosnet_1" model="report.paperformat">
+        <record id="paperformat_icosnet" model="report.paperformat">
             <field name="name">Icosnet Paper Format</field>
             <field name="default" eval="False"/>
             <field name="disable_shrinking" eval="False"/>
@@ -336,7 +336,7 @@
             <field name="report_file">sale.report_saleorder</field>
             <field name="print_report_name">'Bon de Commande-%s' % object.name</field>
             <field name="binding_model_id" ref="model_sale_order" />
-            <field name="paperformat_id" ref="icosnet.paperformat_icosnet_1"/>
+            <field name="paperformat_id" ref="icosnet.paperformat_icosnet"/>
             <field name="binding_type">report</field>
         </record>
 
