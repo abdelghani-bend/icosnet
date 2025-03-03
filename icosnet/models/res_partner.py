@@ -260,13 +260,13 @@ class ResPartner(models.Model):
             'NIS': partner.number_carte_fiscale,
             'NIF': partner.number_nif,
             # 'Code Client': "c123456789",
-            'Commercial':   partner.nom_commercial,
-            'un client existant': "Oui",
+            'Commercial': partner.nom_commercial,
+            'un client existant': 0,
             'wilaya' : partner.state_id.name,
-            'ICRM':  partner.id,
+            'ICRM':  partner.crm_id,
             
             # 'Commercial': 'Aucun Commerciale',
-            'crm_integration': 1,
+            'crm_integration': 'yes',
         }
         serialized_fields = dumps(custom_fields)
 
@@ -334,11 +334,11 @@ class ResPartner(models.Model):
             'NIS': partner.number_carte_fiscale,
             'NIF': partner.number_nif,
             # 'Code Client': "c123456789",
-            'Commercial':   partner.nom_commercial,
-            'un client existant': "Oui",
-            'ICRM':  partner.id,
+            'Commercial': partner.nom_commercial,
+            'un client existant': 1,
+            'ICRM':  partner.crm_id,
             'wilaya' : partner.state_id.name,
-            'crm_integration': 1,
+            'crm_integration': 'yes',
         }
         serialized_fields = dumps(custom_fields)
 
