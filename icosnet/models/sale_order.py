@@ -499,7 +499,7 @@ class SaleOrderLine(models.Model):
                         'name': attr.name,
                         'is_required': attr.is_required,
                         'is_technical': attr.is_technical,
-                        'value': attr.value,
+                        'value': '',
                         'type': attr.type,
                         'possible_values': attr.possible_values,
                         'model_id': attr.model_id.id
