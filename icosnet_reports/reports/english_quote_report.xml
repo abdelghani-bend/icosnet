@@ -34,8 +34,8 @@
                     <div class="col-7">
                         <h1>
                             <strong>
-                                <span t-if="state == 'draft'">PROFORMA</span>
-                                <span>QUOTATION N° <t t-esc="o.name"/></span>
+                                <span t-if="o.state == 'draft'">PROFORMA</span>
+                                <span t-if="o.state != 'draft'">QUOTATION N° <t t-esc="o.name"/></span>
                             </strong>
                         </h1>
                     </div>

@@ -41,8 +41,8 @@
                     <div class="col-7">
                         <h1>
                             <strong>
-                                <span t-if="state == 'draft'">DEVIS / </span>
-                                <span>BON DE COMMANDE N° <t t-esc="o.name"/></span>
+                                <span t-if="o.state == 'draft'">DEVIS</span>
+                                <span t-if="o.state != 'draft'">BON DE COMMANDE N° <t t-esc="o.name"/></span>
                             </strong>
                         </h1>
                     </div>
