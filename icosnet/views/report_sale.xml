@@ -104,6 +104,10 @@
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.email" /></td>
                                 </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">CHARGE DE COMPTE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.name" /></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -122,31 +126,35 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIF :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nif" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nif" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIC :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nis" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nis" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_article" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_article" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.phone" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.email" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.email" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">CONTACT PRINCIPAL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.parent_id.name" t-if="o.partner_id.parent_id"/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -165,31 +173,35 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_registre" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIF :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nif" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nif" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">NIC :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_nis" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nis" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_article" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_article" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.phone" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.email" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.email" /></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px 5px 5px 10px;">CONTACT FINANCIER :</td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.parent_id.name" t-if="o.partner_id.parent_id"/></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -206,67 +218,51 @@
                         <t t-set="lines_to_report" t-value="o._get_order_lines_to_report()"/>
                         <t t-set="display_discount" t-value="any(l.discount for l in lines_to_report)"/>
                         <center>
-                            <table class="table table-sm o_main_table table-borderless mt-4" style="width: 90%">
-                                <!-- In case we want to repeat the header, remove "display: table-row-group" -->
-                                <thead style="background: #666699; color:white; width:100%!important;">
-                                    <tr>
-                                        <th name="th_description" class="text-start">
-                                            <span>DESIGNATION DE L’ARTICLE/ SERVICE</span>
-                                        </th>
-                                        <th name="th_quantity" class="text-end">
-                                            <span>QUANTITE</span>
-                                        </th>
-                                        <th name="th_priceunit"
-                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                            <span>PRIX UNITAIRE HT</span>
-                                        </th>
-                                        <th name="th_price_unit" t-if="display_discount"
-                                            t-attf-class="text-end {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}">
-                                            <span>Remise%</span>
-                                        </th>
-                                        <th name="th_subtotal" class="text-end">
-                                            <span>MONTANT HT</span>
-                                        </th>
+                            <table class="table" style="border-collapse: collapse; width: 90%;">
+                                <thead>
+                                    <tr style="text-align:center">
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Designation de l'article ou de service </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> QUANTITE </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Devise </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Prix unitaire HT </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Réccurence </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Remise % </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Montant HT </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> TVA % </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Montant TTC </strong></th>
                                     </tr>
                                 </thead>
-                                <tbody class="sale_tbody">
+                                <tbody>
+                                    <t t-foreach="o.order_line" t-as="line">
+                                        <tr class="table_tr">
+                                            <td class="table_td" style="text-align:left;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.product_id.name"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.product_uom_qty"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.currency_id.name"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.price_unit"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
 
-                                    <t t-set="current_subtotal" t-value="0"/>
-
-                                    <t t-foreach="lines_to_report" t-as="line">
-
-                                        <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" />
-
-                                        <tr t-att-class="'bg-200 fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
-                                            <t t-if="not line.display_type">
-                                                <td name="td_name"><span t-field="line.name"/></td>
-                                                <td name="td_quantity" class="text-end">
-                                                    <span t-field="line.product_uom_qty"/>
-                                                    <span t-field="line.product_uom"/>
-                                                </td>
-                                                <td name="td_priceunit" class="text-end">
-                                                    <span t-field="line.price_unit"/>
-                                                </td>
-                                                <td t-if="display_discount" class="text-end">
-                                                    <span t-field="line.discount"/>
-                                                </td>
-
-                                                <td t-if="not line.is_downpayment" name="td_subtotal" class="text-end o_price_total">
-                                                    <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
-                                                    <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
-                                                </td>
-                                            </t>
-
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.discount"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.price_subtotal"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.tax_id.amount"/>
+                                            </td>
+                                            <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
+                                                <t t-esc="line.price_total"/>
+                                            </td>
                                         </tr>
-
-                                        <t t-if="current_section and (line_last or doc.order_line[line_index+1].display_type == 'line_section') and not line.is_downpayment">
-                                            <tr class="is-subtotal text-end">
-                                                <td name="td_section_subtotal" colspan="99">
-                                                    <strong class="mr16">Subtotal</strong>
-                                                    <span t-out="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                                                </td>
-                                            </tr>
-                                        </t>
                                     </t>
                                 </tbody>
                             </table>
