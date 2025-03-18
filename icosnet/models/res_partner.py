@@ -85,6 +85,8 @@ class ResPartner(models.Model):
     fax = fields.Char(string="Fax")
     second_email = fields.Char(string="Email secondaire")
     second_contact = fields.Char(string="Contact secondaire")
+    contact_principal = fields.Char(string="Contact Principale")
+    contact_financial = fields.Char(string="Contact Financière")
     contact_role = fields.Selection([('Directeur Général', 'Directeur Général'),
                                      ('Contact Technique', 'Contact Technique'),
                                      ('Contact Commercial', 'Contact Commercial'),

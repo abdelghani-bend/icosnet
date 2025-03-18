@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <template id="sale.report_saleorder_raw">
+        <template id="english_report_saleorder_raw">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-set="lang" t-value="o.partner_id.lang" />
-                    <t t-call="icosnet.nv_report_sale_document" t-lang="lang" />
+                    <t t-call="icosnet_reports.nv_report_sale_english_document" t-lang="lang" />
                 </t>
             </t>
         </template>
 
-        <template id="nv_report_sale_document">
+        <template id="nv_report_sale_english_document">
             <t t-call="web.basic_layout">
 
                 <style>
@@ -41,7 +41,7 @@
                     <div class="col-7">
                         <h1>
                             <strong>
-                                <span>BON DE COMMANDE N° <t t-esc="o.name"/></span>
+                                <span>PURCHASE ORDER N° <t t-esc="o.name"/></span>
                             </strong>
                         </h1>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="col-6" style="margin: 0 auto;">
                         <table class="w-100">
                             <tr>
-                                <td><strong>Numero:</strong></td>
+                                <td><strong>ORDER NUMBER:</strong></td>
                                 <td><t t-esc="o.name" /></td>
                                 <td><strong>Date:</strong></td>
                                 <td><t t-esc="o.date_order" /></td>
@@ -67,20 +67,20 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2" style="background: #666699; padding: 10px; color:white">Icosnet</th>
+                                    <th colspan="2" style="background: #666699; padding: 10px; color:white">Supplier Information</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">NOM – RAISON SOCIALE:</td>
+                                    <td style="padding: 5px 5px 5px 10px;">NAME – BUSINESS NAME:</td>
                                     <td style="padding: 5px 5px 5px 10px;">ICOSNET</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">ADDRESS :</td>
                                     <td style="padding: 5px 5px 5px 10px;">CENTRE DES AFFAIRES EL QODS, 6ème Niveau de la tour centrale 16002 Chéraga </td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">R.C / LICENSE Num</td>
                                     <td style="padding: 5px 5px 5px 10px;">99B00067316/00</td>
                                 </tr>
                                 <tr>
@@ -92,19 +92,19 @@
                                     <td style="padding: 5px 5px 5px 10px;">099916500999205</td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">TAX ITEM :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.number_article" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">PHONE/ FAX :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.phone" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">E-MAIL :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.email" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">CHARGE DE COMPTE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">CONTACT :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.nom_commercial" /></td>
                                 </tr>
                             </tbody>
@@ -115,20 +115,20 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">Client livré</th>
+                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">End customer Information</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">NOM – RAISON SOCIALE:</td>
+                                    <td style="padding: 5px 5px 5px 10px;">NAME – BUSINESS NAME: </td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.name" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">ADDRESS :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">R.C / LICENSE :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
@@ -140,19 +140,19 @@
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nis" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">TAX ITEM :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_article" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">PHONE/ FAX :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">E-MAIL :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.email" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">CONTACT PRINCIPAL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">CONTACT :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.contact_principal"/></td>
                                 </tr>
                             </tbody>
@@ -162,20 +162,20 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">Client facturé</th>
+                                    <th colspan="2" style=" color:white ;background: #666699; padding: 10px; border: 1px solid black;">Billing Information</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">NOM – RAISON SOCIALE:</td>
+                                    <td style="padding: 5px 5px 5px 10px;">NAME – BUSINESS NAME:</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.name" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ADRESSE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">ADDRESS :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">R.C / AGREMENT :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">R.C / LICENSE :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_registre" /></td>
                                 </tr>
                                 <tr>
@@ -187,19 +187,19 @@
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_nis" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">ART. IMPOSITION :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">TAX ITEM :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.number_article" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">PHONE/ FAX :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">E-MAIL :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.email" /></td>
                                 </tr>
                                 <tr>
-                                    <td style="padding: 5px 5px 5px 10px;">CONTACT FINANCIER :</td>
+                                    <td style="padding: 5px 5px 5px 10px;">FINANCIAL CONTACT :</td>
                                     <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.contact_financial"/></td>
                                 </tr>
                             </tbody>
@@ -220,15 +220,15 @@
                             <table class="table" style="border-collapse: collapse; width: 90%;">
                                 <thead>
                                     <tr style="text-align:center">
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Designation de l'article ou de service </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> QUANTITE </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Devise </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Prix unitaire HT </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Réccurence </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Remise % </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Montant HT </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> TVA % </strong></th>
-                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Montant TTC </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> ITEM/ SERVICE DESCRIPTION </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Qty </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Currency </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Unit price excl. VAT </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Term </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Discount % </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Amount excl. VAT </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> VAT% </strong></th>
+                                        <th style="border: 1px solid #9cc2e5;background: #666699;color:white; padding: 5px;"><strong> Amount Incl.VAT</strong></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -283,13 +283,12 @@
                                 <!-- Conditions Section -->
                                 <div style="width:90%;border: 1px solid #9cc2e5;padding-left:5px;text-align: start;s">
                                     <div style="width:100%;">
-                                        <h3><strong>Conditions de commande :</strong></h3>
+                                        <h3><strong>Order Conditions : </strong></h3>
                                         <ul style="font-size: 18px">
-                                            <li>Fourniture d'une copie du registre de commerce, de la carte fiscale et de la pièce d’identité</li>
-                                            <li>Signature du contrat d'abonnement au service</li>
-                                            <li>Période d'engagement minimale d’un an à compter de la signature du bon de commande</li>
-                                            <li>Modalités de paiement : 15 jours après réception du bon de commande</li>
-                                            <li>Délai de livraison : XX jours après réception de la facture </li>
+                                            <li>Providing a signed order. No PO No Service</li>
+                                            <li>Commitment period of one year from service Delivery</li>
+                                            <li>Identification details upon receipt of the purchase order</li>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -300,7 +299,7 @@
                                 <!-- Conditions Section -->
                                 <div style="width:90%;border: 1px solid #9cc2e5;padding-left:5px;text-align: start;s">
                                     <div style="width:100%;">
-                                        <h3><strong>Commentaires :</strong></h3>
+                                        <h3><strong>Comments:</strong></h3>
                                         <p style="font-size: 18px">
                                             <span t-out="o.internal_note_display"/>
                                         </p>
@@ -317,25 +316,25 @@
                 <div class="footer" style="font-size:13px;">
                     <div class="row" style="width:90%; margin: auto">
                         <div class="col-4">
-                            Centre des affaires EL Qods
+                            Business Center El Qods Central Tower,
                         </div>
                         <div class="col-4 text-center">
                             <a href="www.icosnet.com">www.icosnet.com</a>
                         </div>
                         <div class="col-4" >
-                            <span style="float:right">Tél : +213 21 993 342</span>
+                            <span style="float:right">Phone : +213 21 993 342</span>
                         </div>
                     </div>
                     <div class="row" style="width:90%; margin: auto">
                         <div class="col-4 float-left">
-                            Tour central, 6éme niveau. Chéraga
+                            6th Floor Chéraga, Algiers, Algeria
                         </div>
                         <div class="col-4 text-center">
                             <a href="mailto:contact@icosnet.com">contact@icosnet.com</a>
 
                         </div>
                         <div class="col-4 float-right">
-                            <span style="float:right">FAX : +213 770 175 190</span>
+                            <span style="float:right">Mobile : +213 770 175 190</span>
                         </div>
                     </div>
                 </div>
@@ -344,28 +343,13 @@
             </t>
         </template>
 
-        <record id="paperformat_icosnet" model="report.paperformat">
-            <field name="name">Icosnet Paper Format</field>
-            <field name="default" eval="False"/>
-            <field name="disable_shrinking" eval="False"/>
-            <field name="format">A4</field>
-            <field name="page_height">0</field>
-            <field name="page_width">0</field>
-            <field name="orientation">Portrait</field>
-            <field name="margin_top">0</field>
-            <field name="margin_bottom">15</field>
-            <field name="margin_left">0</field>
-            <field name="margin_right">0</field>
-            <field name="dpi">90</field>
-        </record>
-
         <record id="nv_report_sale" model="ir.actions.report">
-            <field name="name">Bon de commande en francais</field>
+            <field name="name">Bon de commande en anglais</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
-            <field name="report_name">sale.report_saleorder</field>
-            <field name="report_file">sale.report_saleorder</field>
-            <field name="print_report_name">'Bon de Commande-%s' % object.name</field>
+            <field name="report_name">icosnet_reports.english_report_saleorder_raw</field>
+            <field name="report_file">icosnet_reports.english_report_saleorder_raw</field>
+            <field name="print_report_name">'Quotation-%s' % object.name</field>
             <field name="binding_model_id" ref="model_sale_order" />
             <field name="paperformat_id" ref="icosnet.paperformat_icosnet"/>
             <field name="binding_type">report</field>

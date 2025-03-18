@@ -10,6 +10,8 @@
     'data': [
         'reports/purchase_order.xml',
         'reports/english_quote_report.xml',
+        'reports/french_quote_report.xml',
+        'reports/english_order_report.xml',
         'reports/report.xml',
     ],
     'assets': {

@@ -38,6 +38,8 @@
                 <field name="email" position="after">
                     <field name="second_email" widget="email" invisible="entity_type != 'Contact'"/>
                     <field name="second_contact" invisible="entity_type != 'Contact'"/>
+                    <field name="contact_principal"/>
+                    <field name="contact_financial"/>
                 </field>
                 <page name="internal_notes" position="after">
                     <page string="Documents" name="documents2">

@@ -3,15 +3,31 @@
     <data>
 
         <record id="action_english_quote_report" model="ir.actions.report">
-            <field name="name">Devis / Commande Anglais</field>
+            <field name="name">Devis Anglais</field>
             <field name="model">sale.order</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">icosnet_reports.report_saleorder_english_raw</field>
             <field name="report_file">icosnet_reports.report_saleorder_english_raw</field>
-            <field name="print_report_name">'Devis en anglais'</field>
+            <field name="print_report_name">'Proforma-%s' % object.name</field>
             <field name="binding_model_id" ref="model_sale_order" />
             <field name="paperformat_id" ref="icosnet.paperformat_icosnet"/>
             <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_french_quote_report" model="ir.actions.report">
+            <field name="name">Devis Francais</field>
+            <field name="model">sale.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">icosnet_reports.report_saleorder_french_raw</field>
+            <field name="report_file">icosnet_reports.report_saleorder_french_raw</field>
+            <field name="print_report_name">'Devis-%s' % object.name</field>
+            <field name="binding_model_id" ref="model_sale_order" />
+            <field name="paperformat_id" ref="icosnet.paperformat_icosnet"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="sale.action_report_saleorder" model="ir.actions.report">
+            <field name="binding_model_id" eval="False" />
         </record>
 
     </data>

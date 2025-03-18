@@ -2,16 +2,16 @@
 <odoo>
     <data>
 
-        <template id="report_saleorder_english_raw">
+        <template id="report_saleorder_french_raw">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-set="lang" t-value="o.partner_id.lang" />
-                    <t t-call="icosnet_reports.english_quote_report" t-lang="lang" />
+                    <t t-call="icosnet_reports.french_quote_report" t-lang="lang" />
                 </t>
             </t>
         </template>
 
-        <template id="english_quote_report">
+        <template id="french_quote_report">
             <t t-call="web.basic_layout">
                 <t t-call-assets="web.report_assets_common"/>
                 <style>
@@ -34,7 +34,7 @@
                     <div class="col-7">
                         <h1>
                             <strong>
-                                <span>PROFORMA N° <t t-esc="o.name"/></span>
+                                <span>DEVIS N° <t t-esc="o.name"/></span>
                             </strong>
                         </h1>
                     </div>
@@ -46,22 +46,20 @@
                         <p>Centre des affaires EL Qods</p>
                         <p>6eme niveau de la tour centrale</p>
                         <p>16002 Cheraga</p>
-                        <p>Phone number : +213 21 993 342</p>
+                        <p>N° De téléphone : +213 21 993 342</p>
                     </div>
                     <div style="float:right; width:50%;">
-                        <h4> <strong>PARTNER :</strong></h4>
+                        <h4> <strong>DESTINATAIRE  :</strong></h4>
                         <p><span t-out="o.partner_id.street"/></p>
                         <p><span t-out="o.partner_id.street2"/></p>
                         <p><span t-out="o.partner_id.zip"/> <span t-out="o.partner_id.city_id.name"/></p>
-                        <p>Phone number : <span t-out="o.partner_id.phone"/></p>
+                        <p>N° De téléphone : <span t-out="o.partner_id.phone"/></p>
                     </div>
                 </div>
                 <div class="header_adr">
                     <div style="float:left; width:100%;">
-                        <p><strong>Date :</strong> <t t-esc="o.date_order"/> </p>
-                        <p><strong>End Customer :</strong> </p>
-                        <p><strong>Address :</strong> </p>
-                        <p><strong>Validity :</strong> <t t-esc="o.validity_date"/> </p>
+                        <p><strong>Date de devis :</strong> <t t-esc="o.date_order"/> </p>
+                        <p><strong>Validité de l’offre :</strong> <t t-esc="o.validity_date"/> </p>
                     </div>
                 </div>
                 <br></br><br></br><br></br><br></br>
@@ -78,15 +76,11 @@
                         <table class="table" style="border-collapse: collapse; width: 90%;">
                             <thead>
                                 <tr style="text-align:center">
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> ITEM/SERVICE DESCRIPTION </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> QTY </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> CURRENCY </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> UNIT PRICE EXCL.VAT </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> TERM </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> Discount % </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> AMOUNT EXCL.VAT </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> VAT % </strong></th>
-                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> TOTAL AMOUNT INCL.VAT </strong></th>
+                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> DESCRIPTION </strong></th>
+                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> QUANTITE </strong></th>
+                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> PRIX UNITAIRE </strong></th>
+                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> REMISE </strong></th>
+                                    <th style="border: 1px solid #9cc2e5; padding: 5px;"><strong> Total HT </strong></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,13 +93,7 @@
                                             <t t-esc="line.product_uom_qty"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.currency_id.name"/>
-                                        </td>
-                                        <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
                                             <t t-esc="line.price_unit"/>
-                                        </td>
-                                        <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
                                             <t t-esc="line.discount"/>
@@ -113,30 +101,24 @@
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
                                             <t t-esc="line.price_subtotal"/>
                                         </td>
-                                        <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.tax_id.amount"/>
-                                        </td>
-                                        <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.price_total"/>
-                                        </td>
                                     </tr>
                                 </t>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="5" class="table_td" style="text-align:right;border: 1px solid #9cc2e5; padding: 5px;"><strong> TOTAL</strong></td>
+                                    <td colspan="4" class="table_td" style="text-align:right;border: 1px solid #9cc2e5; padding: 5px;"><strong> TOTAL</strong></td>
                                     <td style="border: 1px solid #9cc2e5; padding: 5px;"> </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" class="table_td" style="text-align:right;"><strong>Total excl : </strong></td>
+                                    <td colspan="4" class="table_td" style="text-align:right;"><strong>Total HT : </strong></td>
                                     <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_untaxed"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" class="table_td" style="text-align:right;"><strong>Total VAT : </strong></td>
+                                    <td colspan="4" class="table_td" style="text-align:right;"><strong>Total TVA : </strong></td>
                                     <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_tax"/></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="8" class="table_td" style="text-align:right;"><strong>Amount due : </strong></td>
+                                    <td colspan="4" class="table_td" style="text-align:right;"><strong>Net à payer : </strong></td>
                                     <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_total"/></td>
                                 </tr>
                             </tfoot>
@@ -149,15 +131,17 @@
                     <!-- Conditions Section -->
                     <div style="width:100%;padding-bottom: 100px;">
                         <div style="float:left; width:50%;padding-left: 60px;">
-                            <h3><strong>Order Conditions :</strong></h3>
+                            <h3><strong>Conditions de commande :</strong></h3>
                             <ul style="font-size: 18px">
-                                <li>Providing a signed order. No PO No Service.</li>
-                                <li>Commitment period of one year from service Delivery.</li>
-                                <li>Identification details upon receipt of the purchase order.</li>
+                                <li>Fourniture d'une copie du registre de commerce et carte fiscale.</li>
+                                <li>Signature du contrat d'abonnement de service.</li>
+                                <li>Période d'engagement d'une année dès la signature du B</li>
+                                <li>Modalités de paiement :15 Jours après réception du bon de commande</li>
+                                <li>Délai de livraison : XX jours après réception de la facture</li>
                             </ul>
                         </div>
                         <div style="float:right; width:40%;">
-                            <h3> <strong>Account Manager :</strong></h3>
+                            <h3> <strong>Commercial :</strong></h3>
                         </div>
                     </div>
 
@@ -166,25 +150,25 @@
                 <div class="footer" style="font-size:13px;">
                     <div class="row" style="width:90%; margin: auto">
                         <div class="col-4">
-                            Business Center El Qods Central Tower,
+                            Centre des affaires EL Qods
                         </div>
                         <div class="col-4 text-center">
                             <a href="www.icosnet.com">www.icosnet.com</a>
                         </div>
                         <div class="col-4" >
-                            <span style="float:right">Phone : +213 21 993 342</span>
+                            <span style="float:right">Tel : +213 21 993 342</span>
                         </div>
                     </div>
                     <div class="row" style="width:90%; margin: auto">
                         <div class="col-4 float-left">
-                            6th Floor Chéraga, Algiers, Algeria
+                            Tour central, 6éme niveau. Chéraga
                         </div>
                         <div class="col-4 text-center">
                             <a href="mailto:contact@icosnet.com">contact@icosnet.com</a>
 
                         </div>
                         <div class="col-4 float-right">
-                            <span style="float:right">Mobile : +213 770 175 190</span>
+                            <span style="float:right">FAX : +213 770 175 190</span>
                         </div>
                     </div>
                 </div>
