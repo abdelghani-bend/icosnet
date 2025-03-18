@@ -5,11 +5,13 @@ from odoo import api, fields, models
 
 class TechnicalAttributes(models.Model):
     _name = 'technical.attributes.wizard'
-    sol_id = fields.Many2one('sale.order.line', string="Ligne de Commande")
-    order_id = fields.Many2one('sale.order', related="sol_id.order_id",string="Devis/Commande", store=True)
-    partner_id = fields.Many2one('res.partner', related="order_id.partner_id",string="Client", store=True)
-    product_id = fields.Many2one('product.product', related="sol_id.product_id",string="Produit", store=True)
-    name = fields.Char('Identifiant', compute="_compute_identifiant", store="True")
+    _inherit = ['mail.thread']
+
+    sol_id = fields.Many2one('sale.order.line', string="Ligne de Commande", tracking=1)
+    order_id = fields.Many2one('sale.order', related="sol_id.order_id",string="Devis/Commande", store=True, tracking=1)
+    partner_id = fields.Many2one('res.partner', related="order_id.partner_id",string="Client", store=True,tracking=1)
+    product_id = fields.Many2one('product.product', related="sol_id.product_id",string="Produit", store=True, tracking=1)
+    name = fields.Char('Identifiant', compute="_compute_identifiant", store="True", tracking=1)
     technical_attribute_ids = fields.One2many(
         comodel_name="product.technical.attribute", inverse_name="technical_attributes_wizard_id", string="Fiche Technique",
     )
@@ -19,8 +21,6 @@ class TechnicalAttributes(models.Model):
         ('cancelled', 'Annulé')
     ], string='Statut', compute='_compute_state', store=True)
 
-
-    
 
     @api.depends('sol_id')
     def _compute_identifiant(self):
