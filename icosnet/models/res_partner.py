@@ -213,7 +213,7 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        if self.env.context.get('default_customer_rank', False):
+        if self.env.context.get('default_customer_rank', False) or self.env.context.get('from_odoo', False):
             if not res._check_client_exists_whmcs():
                 res._add_client_whmcs()
         return res

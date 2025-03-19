@@ -255,7 +255,9 @@
             </field>
         </record>
 
-
+        <record id="contacts.action_contacts" model="ir.actions.act_window">
+            <field name="context">{'default_is_company': True, 'from_odoo': True}</field>
+        </record>
 
     </data>
 </odoo>
