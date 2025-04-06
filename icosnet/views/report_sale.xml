@@ -5,7 +5,12 @@
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="o">
                     <t t-set="lang" t-value="o.partner_id.lang" />
-                    <t t-call="icosnet.nv_report_sale_document" t-lang="lang" />
+                    <t t-if="o.state != 'sale'">
+                        <t t-call="icosnet_reports.french_quote_report" t-lang="lang" />
+                    </t>
+                    <t t-else="">
+                        <t t-call="icosnet.nv_report_sale_document" t-lang="lang" />
+                    </t>
                 </t>
             </t>
         </template>
@@ -97,7 +102,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.company_id.partner_id.phone" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="' '.join([o.company_id.partner_id.phone[i:i+2] for i in range(0, len(o.company_id.partner_id.phone), 2)])" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
@@ -145,7 +150,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="' '.join([o.partner_id.phone[i:i+2] for i in range(0, len(o.partner_id.phone), 2)])" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
@@ -192,7 +197,7 @@
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">TELEPHONE :</td>
-                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="o.partner_id.phone" /></td>
+                                    <td style="padding: 5px 5px 5px 10px;"><t t-esc="' '.join([o.partner_id.phone[i:i+2] for i in range(0, len(o.partner_id.phone), 2)])" /></td>
                                 </tr>
                                 <tr>
                                     <td style="padding: 5px 5px 5px 10px;">EMAIL :</td>
@@ -244,7 +249,7 @@
                                                 <t t-esc="line.currency_id.name"/>
                                             </td>
                                             <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                                <t t-esc="line.price_unit"/>
+                                                <t t-esc="'{:,.2f}'.format(line.price_unit).replace(',', ' ').replace('.', ',')"/>
                                             </td>
                                             <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
 
@@ -253,13 +258,13 @@
                                                 <t t-esc="line.discount"/>
                                             </td>
                                             <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                                <t t-esc="line.price_subtotal"/>
+                                                <t t-esc="'{:,.2f}'.format(line.price_subtotal).replace(',', ' ').replace('.', ',')"/>
                                             </td>
                                             <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
                                                 <t t-esc="line.tax_id.amount"/>
                                             </td>
                                             <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                                <t t-esc="line.price_total"/>
+                                                <t t-esc="'{:,.2f}'.format(line.price_total).replace(',', ' ').replace('.', ',')"/>
                                             </td>
                                         </tr>
                                     </t>

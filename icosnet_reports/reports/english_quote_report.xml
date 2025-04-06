@@ -102,7 +102,7 @@
                                             <t t-esc="line.currency_id.name"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.price_unit"/>
+                                            <t t-esc="'{:,.2f}'.format(line.price_unit).replace(',', ' ').replace('.', ',')"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
 
@@ -111,13 +111,13 @@
                                             <t t-esc="line.discount"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.price_subtotal"/>
+                                            <t t-esc="'{:,.2f}'.format(line.price_subtotal).replace(',', ' ').replace('.', ',')"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
                                             <t t-esc="line.tax_id.amount"/>
                                         </td>
                                         <td class="table_td" style="text-align:center;border: 1px solid #9cc2e5; padding: 5px;">
-                                            <t t-esc="line.price_total"/>
+                                            <t t-esc="'{:,.2f}'.format(line.price_total).replace(',', ' ').replace('.', ',')"/>
                                         </td>
                                     </tr>
                                 </t>
@@ -129,15 +129,15 @@
                                 </tr>
                                 <tr>
                                     <td colspan="8" class="table_td" style="text-align:right;"><strong>Total excl : </strong></td>
-                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_untaxed"/></td>
+                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="'{:,.2f}'.format(o.amount_untaxed).replace(',', ' ').replace('.', ',')"/></td>
                                 </tr>
                                 <tr>
                                     <td colspan="8" class="table_td" style="text-align:right;"><strong>Total VAT : </strong></td>
-                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_tax"/></td>
+                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="'{:,.2f}'.format(o.amount_tax).replace(',', ' ').replace('.', ',')"/></td>
                                 </tr>
                                 <tr>
                                     <td colspan="8" class="table_td" style="text-align:right;"><strong>Amount due : </strong></td>
-                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="o.amount_total"/></td>
+                                    <td style="border: 1px solid #9cc2e5; padding: 5px;"><t t-esc="'{:,.2f}'.format(o.amount_total).replace(',', ' ').replace('.', ',')"/></td>
                                 </tr>
                             </tfoot>
                         </table>
