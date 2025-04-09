@@ -318,6 +318,70 @@
 
                 </div>
 
+                <div class="page" style="page-break-before: always; position: relative;height:100%">
+                    <div class="backgroundimage" style="z-index:-1;position:absolute;top:0;left:0;width:100%;height:50%">
+                        <img   t-att-src="'/icosnet/static/src/img/icosnet.png'" alt="Image"/>
+
+                    </div>
+                    <br></br><br></br><br></br><br></br>
+                    <br></br><br></br>
+                    <div class="row" style="color: white;">
+                        <div class="col-4"></div>
+                        <div class="col-7">
+                            <h1>
+                                <strong>
+                                    <span>BON DE COMMANDE N° <t t-esc="o.name"/></span>
+                                </strong>
+                            </h1>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                    <br></br><br></br>
+                    <div class="row" style="width:100%;margin:5%;padding:7%">
+                        <div class="col-4" name="company_details">
+                            <table style="width: 300px">
+                                <thead>
+                                    <tr>
+                                        <th style="background: #666699; padding: 10px; color:white">Icosnet </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height:180px">
+                                        <td style="padding: 5px 5px 5px 10px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4" name="company_details">
+                            <table style="width: 300px">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #666699; padding: 10px; color:white">Client final</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height:180px">
+                                        <td style="padding: 5px 5px 5px 10px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-4" name="company_details">
+                            <table style="width: 300px">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" style="background: #666699; padding: 10px; color:white">Partenaire</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height:180px">
+                                        <td style="padding: 5px 5px 5px 10px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="footer" style="font-size:13px;">
                     <div class="row" style="width:90%; margin: auto">
