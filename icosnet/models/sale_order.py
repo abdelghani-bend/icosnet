@@ -404,8 +404,9 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_uom_qty')
     def _constraint_product_uom_qty(self):
-        if self.product_uom_qty <= 0:
-            raise UserError("La quantité du produit %s doit être supèrieur à zero !" % self.product_template_id.name)
+        for line in self:
+            if line.product_uom_qty <= 0:
+                raise UserError("La quantité du produit %s doit être supèrieur à zero !" % self.product_template_id.name)
 
     def _timesheet_create_project_quotation(self):
         """ Generate project for the given so line, and link it.
@@ -476,9 +477,9 @@ class SaleOrderLine(models.Model):
     def create(self, vals):
         
 
-        solines = super().create(vals)
+        solines = super(SaleOrderLine, self).create(vals)
         for line in solines:
-            self._new_attribute_wizard(line, line.product_id)
+            line._new_attribute_wizard(line, line.product_id)
        
        
         # solines = solines.filtered(lambda sol: sol.is_service and sol.product_id.service_tracking_quotation == 'task_global_project')
