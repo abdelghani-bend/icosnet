@@ -329,7 +329,7 @@
                         <div class="col-7">
                             <h1>
                                 <strong>
-                                    <span>BON DE COMMANDE N° <t t-esc="o.name"/></span>
+                                    <span>PURCHASE ORDER N° <t t-esc="o.name"/></span>
                                 </strong>
                             </h1>
                         </div>
