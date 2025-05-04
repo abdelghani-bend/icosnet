@@ -21,6 +21,7 @@ class TechnicalAttributes(models.Model):
         ('cancelled', 'Annulé')
     ], string='Statut', compute='_compute_state', store=True)
 
+    service_id = fields.Char('Service ID')
 
     @api.depends('sol_id')
     def _compute_identifiant(self):
