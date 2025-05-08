@@ -443,18 +443,18 @@ class PartnerDocuments(models.Model):
     related_documents_document =  fields.Many2one("documents.document")
 
 
-
-    @api.constrains('partner_id', 'document_type')
-    def _check_unique_document_type(self):
-        for record in self:
-            existing_records = self.search([
-                ('partner_id', '=', record.partner_id.id),
-                ('document_type_company', '=', record.document_type_company),
-                ('document_type_individual', '=', record.document_type_individual),
-                ('id', '!=', record.id),  
-            ])
-            if existing_records:
-                raise exceptions.ValidationError("One document type allowed per partner. Please choose a different document type.")
+    # TODO: Delete the feature (Asked bu the client)
+    # @api.constrains('partner_id', 'document_type')
+    # def _check_unique_document_type(self):
+    #     for record in self:
+    #         existing_records = self.search([
+    #             ('partner_id', '=', record.partner_id.id),
+    #             ('document_type_company', '=', record.document_type_company),
+    #             ('document_type_individual', '=', record.document_type_individual),
+    #             ('id', '!=', record.id),
+    #         ])
+    #         if existing_records:
+    #             raise exceptions.ValidationError("One document type allowed per partner. Please choose a different document type.")
 
     @api.depends('document_type_individual', 'document_type_company' )
     def _compute_name(self):
