@@ -443,7 +443,7 @@ class PartnerDocuments(models.Model):
     related_documents_document =  fields.Many2one("documents.document")
 
 
-    # TODO: Delete the feature (Asked bu the client)
+    # TODO: Delete the feature (Asked by the client)
     # @api.constrains('partner_id', 'document_type')
     # def _check_unique_document_type(self):
     #     for record in self:
