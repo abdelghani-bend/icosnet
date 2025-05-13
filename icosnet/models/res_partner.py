@@ -391,9 +391,8 @@ class ResPartner(models.Model):
         needs_whmcs_update = [record for record in self if record._check_client_exists_whmcs()]
 
         res = super().write(vals)
-        # TODO:
-        #for record in needs_whmcs_update:
-        #    record._update_client_whmcs()
+        for record in needs_whmcs_update:
+            record._update_client_whmcs()
 
         return res
     
