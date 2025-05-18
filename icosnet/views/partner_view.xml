@@ -122,7 +122,7 @@
                             </group>
 
                         </group>
-                        <group string="Piece d’identité du signataire" invisible="entity_type != 'Contact'">
+                        <group string="Piece d’identité du signataire">
                             <field name="identity_document_type"/>
                             <field name="number_identity_document"/>
                             <field name="identity_document_expiration"/>
