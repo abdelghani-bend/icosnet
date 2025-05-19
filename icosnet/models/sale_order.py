@@ -402,6 +402,11 @@ class SaleOrderLine(models.Model):
     
     attributes_button_visible = fields.Boolean(compute="_compute_attributes_button_visible",store="True")
 
+    @api.depends('product_id', 'company_id')
+    def _compute_tax_id(self):
+        if not self.env.context.get('from_crm_lead'):
+            return super(SaleOrderLine, self)._compute_tax_id()
+
     @api.constrains('product_uom_qty')
     def _constraint_product_uom_qty(self):
         for line in self:

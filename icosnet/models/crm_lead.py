@@ -44,7 +44,7 @@ class CrmLead(models.Model):
         'price_unit': line.price_unit,
         'customer_lead': 1,
         'display_type': False,
-        'tax_id': [(6, 0, line.taxes_id.ids)],
+        'tax_id': [(6, 0, [])] + [(6, 0, line.taxes_id.ids)],
                 }) for line in lines]
         
         quotation_context['from_crm_lead'] = True

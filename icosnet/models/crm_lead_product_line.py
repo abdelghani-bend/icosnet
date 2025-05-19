@@ -15,7 +15,6 @@ class CrmLeadProductLine(models.Model):
     currency_id = fields.Many2one('res.currency', related="product_id.company_id.currency_id", readonly=True)
     taxes_id = fields.Many2many('account.tax', 'product_taxes_rel2', 'prod_id', 'tax_id', help="Default taxes used when selling the product.", string='Customer Taxes',
         domain=[('type_tax_use', '=', 'sale')],
-        default=lambda self: self.env.companies.account_sale_tax_id or self.env.companies.root_id.account_sale_tax_id,
     )
     is_non_catalog = fields.Boolean(string='Produit hors catalogue?', related="product_id.is_non_catalog")
     
