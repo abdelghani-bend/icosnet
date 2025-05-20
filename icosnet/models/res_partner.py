@@ -311,7 +311,8 @@ class ResPartner(models.Model):
        
         response = requests.post(url, data=new_client)
 
-      
+        _logger.info(" ||||||||| RESPONSE >>>>>>>>>>>>>>>>")
+        _logger.inf(response)
         if response.status_code == 200:
             response_data = response.json()
             if response_data['result'] == 'success':
