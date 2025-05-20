@@ -213,8 +213,6 @@ class ResPartner(models.Model):
     
    
         res = super().create(vals)
-        _logger.info(" ||||||||| CHECK >>>>>>>>>>>>>>>>")
-        _logger.info(self.env.context)
         if self.env.context.get('default_customer_rank', False) or self.env.context.get('from_odoo', False):
             if not res._check_client_exists_whmcs():
                 res._add_client_whmcs()
@@ -254,6 +252,10 @@ class ResPartner(models.Model):
         else:
             return False
 
+    def custom_action_example(self):
+        partners = self.env['res.partner'].sudo().search([('id', 'in', [162386, 162230, 162199])])
+        for partner in partners:
+            partner._add_client_whmcs()
 
     def _add_client_whmcs(self):
         partner = self
@@ -313,8 +315,7 @@ class ResPartner(models.Model):
        
         response = requests.post(url, data=new_client)
 
-        _logger.info(" ||||||||| RESPONSE >>>>>>>>>>>>>>>>")
-        _logger.info(response)
+
         if response.status_code == 200:
             response_data = response.json()
             if response_data['result'] == 'success':
