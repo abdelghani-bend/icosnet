@@ -252,10 +252,6 @@ class ResPartner(models.Model):
         else:
             return False
 
-    def custom_action_example(self):
-        partners = self.env['res.partner'].sudo().search([('id', 'in', [162230])])
-        for partner in partners:
-            partner._add_client_whmcs()
 
     def _add_client_whmcs(self):
         partner = self
